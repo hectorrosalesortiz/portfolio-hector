@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 229 64% 5%;
+  --foreground: 0 0% 100%;
+  --surface: 222 47% 11%;
+  --muted: 218 33% 18%;
+  --muted-foreground: 215 20% 65%;
+  --border: 217 33% 21%;
+  --primary: 217 91% 60%;
+  --secondary: 258 90% 66%;
+  --accent: 189 94% 43%;
+  --card: 222 47% 11%;
+  --card-foreground: 0 0% 100%;
+  color-scheme: dark;
+}
+
+.light {
+  --background: 216 100% 98%;
+  --foreground: 222 47% 9%;
+  --surface: 0 0% 100%;
+  --muted: 214 32% 91%;
+  --muted-foreground: 215 16% 40%;
+  --border: 214 32% 82%;
+  --primary: 217 91% 55%;
+  --secondary: 258 90% 60%;
+  --accent: 189 94% 40%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 9%;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(59, 130, 246, 0.2), transparent 30rem),
+    radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.18), transparent 28rem),
+    hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-inter), Inter, sans-serif;
+  text-rendering: geometricPrecision;
+}
+
+body::selection {
+  background: rgba(6, 182, 212, 0.32);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.noise-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+.glass-panel {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.38));
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(22px);
+}
+
+.light .glass-panel {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.54));
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.12);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, #ffffff, #bfdbfe 34%, #c4b5fd 68%, #67e8f9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.light .gradient-text {
+  background: linear-gradient(120deg, #0f172a, #2563eb 34%, #7c3aed 68%, #0891b2);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.animated-border {
+  position: relative;
+}
+
+.animated-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(139, 92, 246, 0.48), rgba(6, 182, 212, 0.8));
+  opacity: 0.54;
+  filter: blur(14px);
+}
+
+.cursor-none {
+  cursor: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
