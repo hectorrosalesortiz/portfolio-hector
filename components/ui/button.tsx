@@ -52,10 +52,8 @@ export function buttonClasses({
 }
 
 export function Button(props: ButtonProps | LinkButtonProps) {
-  const { variant, size, className, children, ...rest } = props;
-
-  if ("href" in rest && rest.href) {
-    const { href, ...anchorProps } = rest;
+  if ("href" in props && props.href) {
+    const { variant, size, className, children, href, ...anchorProps } = props;
     const isExternal = href.startsWith("http");
 
     if (isExternal) {
@@ -73,8 +71,10 @@ export function Button(props: ButtonProps | LinkButtonProps) {
     );
   }
 
+  const { variant, size, className, children, ...buttonProps } = props as ButtonProps;
+
   return (
-    <button className={buttonClasses({ variant, size, className })} {...rest}>
+    <button className={buttonClasses({ variant, size, className })} {...buttonProps}>
       {children}
     </button>
   );

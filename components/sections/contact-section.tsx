@@ -65,7 +65,7 @@ export function ContactSection() {
       <div className="container relative z-10">
         <SectionHeading
           eyebrow="Contact"
-          title="Let’s build an AI-powered product that feels exceptional."
+          title="Let's build an AI-powered product that feels exceptional."
           description="Available for senior engineering, AI product architecture, full stack delivery, and enterprise platform initiatives."
         />
 

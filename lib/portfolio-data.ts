@@ -5,10 +5,10 @@ import {
   CloudCog,
   Code2,
   DatabaseZap,
-  Github,
+  GitBranch,
   Globe2,
   GraduationCap,
-  Linkedin,
+  Link,
   Mail,
   MapPin,
   MessageCircle,
@@ -177,7 +177,7 @@ export const contactMethods: ContactMethod[] = [
     label: "LinkedIn",
     value: "Hector Rosales Ortiz",
     href: profile.linkedin,
-    icon: Linkedin,
+    icon: Link,
   },
   {
     label: "Country",
@@ -187,8 +187,8 @@ export const contactMethods: ContactMethod[] = [
 ];
 
 export const socialLinks = [
-  { label: "LinkedIn", href: profile.linkedin, icon: Linkedin },
-  { label: "GitHub", href: "https://github.com/", icon: Github },
+  { label: "LinkedIn", href: profile.linkedin, icon: Link },
+  { label: "GitHub", href: "https://github.com/", icon: GitBranch },
   { label: "Global", href: "#projects", icon: Globe2 },
 ];
 

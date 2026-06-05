@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { capabilities } from "@/lib/portfolio-data";
 import { Reveal } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/layout/section-heading";
@@ -26,14 +27,19 @@ export function AboutSection() {
           <Reveal direction="right">
             <Card className="relative overflow-hidden p-8">
               <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-primary/20 blur-3xl" />
-              <div className="relative mx-auto grid aspect-square max-w-sm place-items-center rounded-[2rem] border border-white/10 bg-gradient-to-br from-primary/30 via-secondary/20 to-accent/20 p-8 light:border-slate-200">
-                <div className="grid h-full w-full place-items-center rounded-[1.5rem] border border-white/20 bg-background/40 text-center backdrop-blur-xl">
-                  <div>
-                    <div className="mx-auto grid h-24 w-24 place-items-center rounded-full bg-gradient-to-br from-primary via-secondary to-accent font-space text-3xl font-black text-white shadow-glow">
-                      HR
-                    </div>
-                    <p className="mt-6 font-sora text-2xl font-semibold">Profile Photo</p>
-                    <p className="mt-2 text-sm text-muted-foreground">Premium placeholder ready for a portrait.</p>
+              <div className="relative mx-auto aspect-[4/5] max-w-sm overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-primary/30 via-secondary/20 to-accent/20 p-3 shadow-glow light:border-slate-200">
+                <div className="relative h-full overflow-hidden rounded-[1.5rem] border border-white/20 bg-background/40 backdrop-blur-xl">
+                  <Image
+                    src="/assets/hector-rosales-ortiz.png"
+                    alt="Portrait of Hector Rosales Ortiz"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 360px, 85vw"
+                    className="object-cover object-center"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent p-6">
+                    <p className="font-sora text-2xl font-semibold">Hector Rosales Ortiz</p>
+                    <p className="mt-2 text-sm text-muted-foreground">Senior AI & Full Stack Engineer</p>
                   </div>
                 </div>
               </div>

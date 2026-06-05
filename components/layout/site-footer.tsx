@@ -40,7 +40,7 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="container mt-8 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Hector Rosales Ortiz. All rights reserved.
+        &copy; {new Date().getFullYear()} Hector Rosales Ortiz. All rights reserved.
       </div>
     </footer>
   );

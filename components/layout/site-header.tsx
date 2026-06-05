@@ -52,7 +52,12 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 pl-3 text-xs font-semibold text-muted-foreground light:border-slate-200 light:bg-slate-900/5 md:flex">
             {isLight ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            <Switch size="small" checked={isLight} onChange={toggleMode} inputProps={{ "aria-label": "Toggle light mode" }} />
+            <Switch
+              size="small"
+              checked={isLight}
+              onChange={(_, checked) => setMode(checked ? "light" : "dark")}
+              slotProps={{ input: { "aria-label": "Toggle light mode" } }}
+            />
           </div>
           <Button href="#contact" size="sm" className="hidden md:inline-flex">
             Contact

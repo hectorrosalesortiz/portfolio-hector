@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github, Layers3 } from "lucide-react";
+import { ArrowUpRight, GitBranch, Layers3 } from "lucide-react";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { Reveal } from "@/components/motion/reveal";
 import { Badge } from "@/components/ui/badge";
@@ -68,7 +68,7 @@ export function ProjectsSection() {
                     </Button>
                     <Button href={project.githubUrl ?? "https://github.com/"} variant="outline" size="sm">
                       GitHub
-                      <Github className="h-4 w-4" />
+                      <GitBranch className="h-4 w-4" />
                     </Button>
                   </div>
                 </div>
