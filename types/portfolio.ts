@@ -8,8 +8,11 @@ export type Stat = {
 export type TimelineItem = {
   company: string;
   role: string;
+  location: string;
   period: string;
-  highlights: string[];
+  technologies: string[];
+  responsibilities: string[];
+  achievements: string[];
 };
 
 export type SkillCategory = {
