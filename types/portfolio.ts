@@ -10,6 +10,12 @@ export type TimelineItem = {
   role: string;
   location: string;
   period: string;
+  companyUrl?: string;
+  project?: string;
+  links?: {
+    label: string;
+    href: string;
+  }[];
   technologies: string[];
   responsibilities: string[];
   achievements: string[];
@@ -28,9 +34,20 @@ export type Project = {
   description: string;
   stack: string[];
   impact: string;
+  role?: string;
+  company?: string;
+  location?: string;
+  period?: string;
+  companyUrl?: string;
+  links?: {
+    label: string;
+    href: string;
+  }[];
   demoUrl?: string;
   githubUrl?: string;
   featured?: boolean;
+  responsibilities?: string[];
+  achievements?: string[];
 };
 
 export type ContactMethod = {

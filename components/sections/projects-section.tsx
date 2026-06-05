@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, GitBranch, Layers3 } from "lucide-react";
+import { ArrowUpRight, CalendarDays, ExternalLink, GitBranch, Layers3, MapPin } from "lucide-react";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { Reveal } from "@/components/motion/reveal";
 import { Badge } from "@/components/ui/badge";
@@ -15,8 +15,8 @@ export function ProjectsSection() {
       <div className="container relative z-10">
         <SectionHeading
           eyebrow="Featured Projects"
-          title="Project work shaped for scale, polish, and business outcomes."
-          description="Selected AI, SaaS, commerce, and mobile platform work with modern architectures and refined user experiences."
+          title="Selected projects shaped for scale, polish, and business outcomes."
+          description="Enterprise AI, food delivery, mobile commerce, SaaS, and banking platform work with modern architectures and refined user experiences."
         />
 
         <div className="grid gap-6 lg:grid-cols-2">
@@ -50,6 +50,24 @@ export function ProjectsSection() {
 
                 <div className="p-7">
                   <h3 className="font-sora text-2xl font-semibold">{project.title}</h3>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {project.role ? <Badge className="normal-case tracking-normal">{project.role}</Badge> : null}
+                    {project.company ? <Badge className="normal-case tracking-normal">{project.company}</Badge> : null}
+                  </div>
+                  <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
+                    {project.period ? (
+                      <span className="inline-flex items-center gap-2">
+                        <CalendarDays className="h-4 w-4 text-accent" />
+                        {project.period}
+                      </span>
+                    ) : null}
+                    {project.location ? (
+                      <span className="inline-flex items-center gap-2">
+                        <MapPin className="h-4 w-4 text-accent" />
+                        {project.location}
+                      </span>
+                    ) : null}
+                  </div>
                   <p className="mt-4 text-sm leading-7 text-muted-foreground">{project.description}</p>
                   <p className="mt-4 text-sm font-semibold text-accent">{project.impact}</p>
 
@@ -61,15 +79,59 @@ export function ProjectsSection() {
                     ))}
                   </div>
 
+                  {project.responsibilities?.length ? (
+                    <div className="mt-7">
+                      <h4 className="text-sm font-semibold text-foreground">Responsibilities</h4>
+                      <ul className="mt-3 space-y-2">
+                        {project.responsibilities.map((responsibility) => (
+                          <li key={responsibility} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                            <span>{responsibility}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+
+                  {project.achievements?.length ? (
+                    <div className="mt-7">
+                      <h4 className="text-sm font-semibold text-foreground">Achievements</h4>
+                      <ul className="mt-3 space-y-2">
+                        {project.achievements.map((achievement) => (
+                          <li key={achievement} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
+                            <span>{achievement}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+
                   <div className="mt-7 flex flex-wrap gap-3">
-                    <Button href={project.demoUrl ?? "#contact"} variant="primary" size="sm">
-                      Live Demo
-                      <ArrowUpRight className="h-4 w-4" />
-                    </Button>
-                    <Button href={project.githubUrl ?? "https://github.com/"} variant="outline" size="sm">
-                      GitHub
-                      <GitBranch className="h-4 w-4" />
-                    </Button>
+                    {project.companyUrl ? (
+                      <Button href={project.companyUrl} variant="secondary" size="sm">
+                        Company
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    ) : null}
+                    {project.links?.map((link) => (
+                      <Button key={link.href} href={link.href} variant="outline" size="sm">
+                        {link.label}
+                        <ExternalLink className="h-4 w-4" />
+                      </Button>
+                    ))}
+                    {project.demoUrl ? (
+                      <Button href={project.demoUrl} variant="primary" size="sm">
+                        Reference
+                        <ArrowUpRight className="h-4 w-4" />
+                      </Button>
+                    ) : null}
+                    {project.githubUrl ? (
+                      <Button href={project.githubUrl} variant="outline" size="sm">
+                        GitHub
+                        <GitBranch className="h-4 w-4" />
+                      </Button>
+                    ) : null}
                   </div>
                 </div>
               </Card>

@@ -4,17 +4,22 @@ import { profile, skillCategories, timeline } from "@/lib/portfolio-data";
 export function GET() {
   const skills = skillCategories.map((category) => `${category.title}: ${category.skills.join(", ")}`).join("\n");
   const experience = timeline
-    .map(
-      (item) => `${item.role}
+    .map((item) => {
+      const links = [
+        item.companyUrl ? `Company: ${item.companyUrl}` : "",
+        ...(item.links?.map((link) => `${link.label}: ${link.href}`) ?? []),
+      ].filter(Boolean);
+
+      return `${item.role}
 ${item.company} | ${item.location} | ${item.period}
-Technologies: ${item.technologies.join(", ")}
+${item.project ? `Project: ${item.project}\n` : ""}${links.length ? `${links.join("\n")}\n` : ""}Technologies: ${item.technologies.join(", ")}
 
 Responsibilities:
 - ${item.responsibilities.join("\n- ")}
 
 Achievements:
-- ${item.achievements.join("\n- ")}`,
-    )
+- ${item.achievements.join("\n- ")}`;
+    })
     .join("\n\n");
 
   const resume = `${profile.name}
