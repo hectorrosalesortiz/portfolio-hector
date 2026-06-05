@@ -46,6 +46,7 @@ export type Project = {
   demoUrl?: string;
   githubUrl?: string;
   featured?: boolean;
+  imageUrls?: string[];
   responsibilities?: string[];
   achievements?: string[];
 };

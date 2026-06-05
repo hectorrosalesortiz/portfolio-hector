@@ -50,8 +50,8 @@ export function ExperienceSection() {
                         >
                           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                             <div>
-                              <h3 className="font-sora text-2xl font-semibold">{item.company}</h3>
-                              <p className="mt-2 text-primary">{item.role}</p>
+                              <h3 className="font-sora text-2xl font-semibold">{item.role}</h3>
+                              <p className="mt-2 text-primary">{item.company}</p>
                               {item.project ? (
                                 <p className="mt-2 text-sm font-semibold text-foreground">Project: {item.project}</p>
                               ) : null}

@@ -218,6 +218,7 @@ export const projects: Project[] = [
     stack: ["Python", "FastAPI", "React", "Next.js", "TypeScript", "OpenAI API", "LangChain", "AWS", "Azure", "Kubernetes"],
     impact: "Delivered production-ready AI-powered business solutions and enterprise knowledge management systems powered by LLMs.",
     featured: true,
+    imageUrls: ["/assets/projects/globant-ai-pods.png", "/assets/projects/globant-insights.png"],
     responsibilities: [
       "Developed enterprise AI applications using Large Language Models.",
       "Built Retrieval-Augmented Generation (RAG) systems and AI assistants.",
@@ -243,6 +244,7 @@ export const projects: Project[] = [
     impact: "Delivered a production-ready food delivery platform with modern UX standards, reusable frontend architecture, and optimized Lighthouse performance.",
     demoUrl: "https://web.didiglobal.com/mx/food",
     featured: true,
+    imageUrls: ["/assets/projects/didi-hero.png", "/assets/projects/didi-promos.png", "/assets/projects/didi-cities.png"],
     responsibilities: [
       "Designed and implemented scalable frontend architecture using React and Next.js.",
       "Built reusable UI components and mobile-first interfaces using Tailwind CSS.",
@@ -270,6 +272,7 @@ export const projects: Project[] = [
     stack: ["React Native", "React", "TypeScript", "Node.js", "GraphQL", "PostgreSQL", "AWS", "Kotlin", "Swift"],
     impact: "Contributed to applications serving millions of users while improving mobile application performance, stability, and shared component adoption.",
     featured: true,
+    imageUrls: ["/assets/projects/rappi-restaurants.png", "/assets/projects/rappi-super.png", "/assets/projects/rappi-mobile.png"],
     responsibilities: [
       "Developed mobile and web features for large-scale consumer applications.",
       "Participated in React Native platform initiatives.",
@@ -295,6 +298,7 @@ export const projects: Project[] = [
     description: "Enterprise SaaS products for international clients, including scalable frontend and backend architectures, microservices, and cloud-native applications.",
     stack: ["React", "TypeScript", "Node.js", "GraphQL", "GCP", "Kubernetes", "PostgreSQL"],
     impact: "Delivered digital transformation projects, improved engineering efficiency through reusable frameworks, and reduced deployment times with CI/CD automation.",
+    imageUrls: ["/assets/projects/wizeline-home.png", "/assets/projects/wizeline-ai.png"],
     responsibilities: [
       "Developed enterprise SaaS products for international clients.",
       "Designed scalable frontend and backend architectures.",
@@ -318,6 +322,7 @@ export const projects: Project[] = [
     description: "Enterprise software solutions for banking and retail clients, including REST APIs, backend services, responsive interfaces, and legacy modernization.",
     stack: ["Java", "Spring Boot", "AngularJS", "JavaScript", "MySQL", "SQL Server"],
     impact: "Delivered multiple enterprise projects, improved system performance, and contributed to modernization of legacy applications.",
+    imageUrls: ["/assets/projects/softtek-home.png", "/assets/projects/softtek-experience.png"],
     responsibilities: [
       "Developed enterprise software solutions for banking and retail clients.",
       "Created REST APIs and backend services.",
