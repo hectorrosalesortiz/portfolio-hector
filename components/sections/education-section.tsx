@@ -1,6 +1,8 @@
 "use client";
 
-import { Award, Network } from "lucide-react";
+import { Award, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { Reveal } from "@/components/motion/reveal";
 import { Card } from "@/components/ui/card";
@@ -12,18 +14,28 @@ export function EducationSection() {
       <div className="container relative z-10">
         <SectionHeading
           eyebrow="Education"
-          title="Computer systems foundation with enterprise engineering depth."
-          description="Formal systems training paired with a decade of production software delivery across AI, web, mobile, and cloud platforms."
+          title="Academic Foundation."
+          description="Formal computer systems training paired with a decade of production software delivery."
         />
 
         <Reveal>
           <Card className="mx-auto max-w-4xl overflow-hidden p-0">
             <div className="grid md:grid-cols-[0.8fr_1.2fr]">
-              <div className="relative grid min-h-72 place-items-center overflow-hidden bg-gradient-to-br from-primary/30 via-secondary/25 to-accent/20 p-10">
-                <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent,rgba(255,255,255,0.12),transparent)] bg-[length:220%_220%] animate-shimmer" />
-                <div className="relative grid h-32 w-32 place-items-center rounded-[2rem] border border-white/20 bg-background/40 text-white backdrop-blur-xl">
-                  <education.icon className="h-14 w-14" />
-                </div>
+              <div className="relative min-h-72 overflow-hidden bg-gradient-to-br from-primary/30 via-secondary/25 to-accent/20">
+                <motion.div
+                  className="absolute -inset-4"
+                  animate={{ scale: [1, 1.06, 1], x: [0, -10, 0], y: [0, 8, 0] }}
+                  transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Image
+                    src="/assets/ipn-campus.png"
+                    alt="Instituto Politecnico Nacional campus"
+                    fill
+                    sizes="(min-width: 768px) 40vw, 100vw"
+                    className="object-cover object-center"
+                  />
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/55 via-background/5 to-transparent" />
               </div>
 
               <div className="p-8 md:p-10">
@@ -32,19 +44,18 @@ export function EducationSection() {
                   <span className="text-sm font-semibold uppercase tracking-[0.22em]">{education.period}</span>
                 </div>
                 <h3 className="mt-5 font-sora text-3xl font-semibold">{education.institution}</h3>
-                <p className="mt-2 text-lg text-primary">{education.campus}</p>
-                <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 light:border-slate-200 light:bg-slate-900/5">
-                    <p className="text-sm text-muted-foreground">Degree</p>
-                    <p className="mt-2 font-semibold">{education.degree}</p>
-                  </div>
-                  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 light:border-slate-200 light:bg-slate-900/5">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Network className="h-4 w-4" />
-                      Field
-                    </div>
-                    <p className="mt-2 font-semibold">{education.field}</p>
-                  </div>
+                <a
+                  href={education.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:text-accent"
+                >
+                  Official university website
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+                <div className="mt-8 space-y-3">
+                  <p className="text-xl font-semibold text-foreground">{education.degree}</p>
+                  <p className="text-lg leading-7 text-muted-foreground">{education.field}</p>
                 </div>
               </div>
             </div>

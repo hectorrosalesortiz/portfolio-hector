@@ -39,7 +39,8 @@ Experience
 ${experience}
 
 Education
-Instituto Politecnico Nacional - UPIICSA
+Instituto Politecnico Nacional
+https://www.ipn.mx/
 Bachelor's Degree, Networking of Computer Systems
 2010 - 2015
 `;

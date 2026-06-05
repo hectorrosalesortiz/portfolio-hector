@@ -378,7 +378,7 @@ export const socialLinks = [
 
 export const education = {
   institution: "Instituto Politecnico Nacional",
-  campus: "UPIICSA",
+  url: "https://www.ipn.mx/",
   degree: "Bachelor's Degree",
   field: "Networking of Computer Systems",
   period: "2010 - 2015",
