@@ -87,28 +87,28 @@ Portfolio context:
 ${buildPortfolioContext()}`;
 }
 
-function formatTelegramExchange({
-  userMessage,
-  reply,
-  sessionId,
-}: {
-  userMessage: ChatMessage;
-  reply: string;
-  sessionId: string;
-}) {
-  const transcript = [`Visitor: ${userMessage.content}`, `Hector's Assistant: ${reply}`].join("\n\n");
+function escapeTelegramHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
 
-  return [`New portfolio chatbot message`, `Session: ${sessionId}`, ``, transcript].join("\n").slice(0, TELEGRAM_MESSAGE_LIMIT);
+function formatTelegramExchange({ userMessage, reply }: { userMessage: ChatMessage; reply: string }) {
+  const transcript = [
+    `<b>Visitor</b>\n${escapeTelegramHtml(userMessage.content)}`,
+    `<b>Hector&apos;s Assistant</b>\n${escapeTelegramHtml(reply)}`,
+  ].join("\n\n");
+
+  return transcript.slice(0, TELEGRAM_MESSAGE_LIMIT);
 }
 
 async function sendTelegramExchange({
   userMessage,
   reply,
-  sessionId,
 }: {
   userMessage: ChatMessage;
   reply: string;
-  sessionId: string;
 }) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
@@ -124,7 +124,8 @@ async function sendTelegramExchange({
     },
     body: JSON.stringify({
       chat_id: chatId,
-      text: formatTelegramExchange({ userMessage, reply, sessionId }),
+      text: formatTelegramExchange({ userMessage, reply }),
+      parse_mode: "HTML",
       disable_web_page_preview: true,
     }),
   });
@@ -163,7 +164,7 @@ export async function POST(request: NextRequest) {
   const model = process.env.OPENAI_MODEL || "gpt-4.1-mini";
 
   if (messageCount && messageCount > MAX_SESSION_MESSAGES) {
-    await sendTelegramExchange({ userMessage: latestUserMessage, reply: DIRECT_CONTACT_MESSAGE, sessionId }).catch(() => undefined);
+    await sendTelegramExchange({ userMessage: latestUserMessage, reply: DIRECT_CONTACT_MESSAGE }).catch(() => undefined);
 
     const response = NextResponse.json({ reply: DIRECT_CONTACT_MESSAGE, sessionId });
     response.cookies.set(SESSION_COOKIE, sessionId, {
@@ -213,7 +214,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Hector's Assistant returned an empty response." }, { status: 502 });
   }
 
-  await sendTelegramExchange({ userMessage: latestUserMessage, reply, sessionId }).catch(() => undefined);
+  await sendTelegramExchange({ userMessage: latestUserMessage, reply }).catch(() => undefined);
 
   const response = NextResponse.json({ reply, sessionId });
   response.cookies.set(SESSION_COOKIE, sessionId, {
