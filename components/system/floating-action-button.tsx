@@ -244,7 +244,7 @@ export function FloatingActionButton() {
                   }}
                   rows={1}
                   placeholder="Ask about projects, skills, or contact..."
-                  className="max-h-24 min-h-10 flex-1 resize-none bg-transparent px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground"
+                  className="no-scrollbar max-h-24 min-h-10 flex-1 resize-none bg-transparent px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground"
                 />
                 <button
                   type="submit"
