@@ -1,20 +1,15 @@
 import {
-  Bot,
   BrainCircuit,
   BriefcaseBusiness,
   CloudCog,
-  Code2,
-  DatabaseZap,
-  GitBranch,
   Globe2,
   GraduationCap,
-  Link,
   Mail,
   MapPin,
-  MessageCircle,
   Rocket,
-  Smartphone,
 } from "lucide-react";
+import { FaGithub, FaLinkedin, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
+import { SiFlutter, SiKubernetes, SiNodedotjs, SiOpenai, SiReact } from "react-icons/si";
 import type { ContactMethod, Project, SkillCategory, Stat, TimelineItem } from "@/types/portfolio";
 import { formatWhatsappLink } from "@/lib/utils";
 
@@ -64,35 +59,35 @@ export const skillCategories: SkillCategory[] = [
     title: "AI & LLM",
     description: "Applied AI systems that combine model reasoning, retrieval, tools, and product UX.",
     level: 96,
-    icon: Bot,
-    skills: ["OpenAI", "LangChain", "RAG", "AI Agents", "Prompt Engineering", "Vector Databases", "LlamaIndex"],
+    icon: SiOpenai,
+    skills: ["OpenAI", "LangChain", "LlamaIndex", "RAG", "AI Agents", "Vector Databases", "Prompt Engineering"],
   },
   {
     title: "Frontend",
     description: "Premium interfaces with strong accessibility, animation, and product polish.",
     level: 95,
-    icon: Code2,
-    skills: ["React", "Next.js", "TypeScript", "Angular", "Tailwind", "Material UI"],
+    icon: SiReact,
+    skills: ["TypeScript", "React", "Next.js", "Angular", "Tailwind", "Material UI", "PHP", "Laravel"],
   },
   {
     title: "Backend",
     description: "Secure, scalable APIs and services for enterprise-grade systems.",
     level: 92,
-    icon: DatabaseZap,
-    skills: ["Node.js", "Python", "FastAPI", "Spring Boot", "GraphQL", "REST APIs"],
+    icon: SiNodedotjs,
+    skills: ["Python", "FastAPI", "Django", "Node.js", "NestJS", "Spring Boot", "GraphQL", "REST APIs"],
   },
   {
     title: "Mobile",
     description: "High-performance mobile experiences across Flutter, React Native, and native ecosystems.",
     level: 92,
-    icon: Smartphone,
-    skills: ["Flutter", "React Native", "Swift", "Kotlin"],
+    icon: SiFlutter,
+    skills: ["Flutter", "React Native", "Swift", "SwiftUI", "Kotlin"],
   },
   {
     title: "Cloud & DevOps",
     description: "Reliable delivery pipelines, observability-ready deployments, and cloud-native architecture.",
     level: 90,
-    icon: CloudCog,
+    icon: SiKubernetes,
     skills: ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "CI/CD"],
   },
 ];
@@ -242,7 +237,7 @@ export const projects: Project[] = [
     description: "A modern food delivery and super app platform inspired by large-scale on-demand ecosystems, with restaurant discovery, promotional sections, dynamic content modules, and mobile-first UX.",
     stack: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Swiper", "Vercel"],
     impact: "Delivered a production-ready food delivery platform with modern UX standards, reusable frontend architecture, and optimized Lighthouse performance.",
-    demoUrl: "https://web.didiglobal.com/mx/food",
+    links: [{ label: "Web", href: "https://web.didiglobal.com/mx/food", type: "web" }],
     featured: true,
     imageUrls: ["/assets/projects/didi-hero.png", "/assets/projects/didi-promos.png", "/assets/projects/didi-cities.png"],
     responsibilities: [
@@ -265,8 +260,8 @@ export const projects: Project[] = [
     period: "April 2021 - December 2023",
     companyUrl: "https://www.rappi.com.mx/",
     links: [
-      { label: "App Store", href: "https://apps.apple.com/co/app/rappi-pide-todo-en-minutos/id984044296" },
-      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.grability.rappi" },
+      { label: "iOS", href: "https://apps.apple.com/co/app/rappi-pide-todo-en-minutos/id984044296", type: "ios" },
+      { label: "Android", href: "https://play.google.com/store/apps/details?id=com.grability.rappi", type: "android" },
     ],
     description: "Large-scale consumer mobile and web platform work across ordering, logistics, React Native initiatives, performance, monitoring, and analytics.",
     stack: ["React Native", "React", "TypeScript", "Node.js", "GraphQL", "PostgreSQL", "AWS", "Kotlin", "Swift"],
@@ -349,19 +344,19 @@ export const contactMethods: ContactMethod[] = [
     label: "Telegram",
     value: profile.telegram,
     href: "https://t.me/yesteru",
-    icon: MessageCircle,
+    icon: FaTelegramPlane,
   },
   {
     label: "WhatsApp",
     value: profile.whatsapp,
     href: formatWhatsappLink(profile.whatsapp),
-    icon: MessageCircle,
+    icon: FaWhatsapp,
   },
   {
     label: "LinkedIn",
     value: "Hector Rosales Ortiz",
     href: profile.linkedin,
-    icon: Link,
+    icon: FaLinkedin,
   },
   {
     label: "Country",
@@ -371,8 +366,8 @@ export const contactMethods: ContactMethod[] = [
 ];
 
 export const socialLinks = [
-  { label: "LinkedIn", href: profile.linkedin, icon: Link },
-  { label: "GitHub", href: "https://github.com/", icon: GitBranch },
+  { label: "LinkedIn", href: profile.linkedin, icon: FaLinkedin },
+  { label: "GitHub", href: "https://github.com/mernmaster2025", icon: FaGithub },
   { label: "Global", href: "#projects", icon: Globe2 },
 ];
 

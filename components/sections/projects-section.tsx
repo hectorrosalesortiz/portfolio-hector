@@ -1,16 +1,77 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, CalendarDays, ExternalLink, GitBranch, Layers3, MapPin } from "lucide-react";
+import { CalendarDays, ExternalLink, Globe2, Layers3, MapPin, RotateCcw } from "lucide-react";
 import Image from "next/image";
+import { useMemo, useState } from "react";
+import { FaAndroid, FaApple } from "react-icons/fa";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { Reveal } from "@/components/motion/reveal";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { projects } from "@/lib/portfolio-data";
+import { cn } from "@/lib/utils";
+
+const preferredFilters = ["All", "React", "Next.js", "React Native", "TypeScript", "Python", "Java", "AWS"];
+
+function ProjectLinkIcon({ type }: { type?: string }) {
+  if (type === "ios") {
+    return <FaApple className="h-4 w-4" />;
+  }
+
+  if (type === "android") {
+    return <FaAndroid className="h-4 w-4" />;
+  }
+
+  if (type === "web") {
+    return <Globe2 className="h-4 w-4" />;
+  }
+
+  return <ExternalLink className="h-4 w-4" />;
+}
+
+function ProjectActionLink({
+  href,
+  label,
+  type,
+}: {
+  href: string;
+  label: string;
+  type?: "web" | "ios" | "android" | "company" | "reference";
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition hover:-translate-y-0.5 hover:border-primary/50 hover:text-foreground light:border-slate-200 light:bg-white"
+      aria-label={label}
+      title={label}
+    >
+      <ProjectLinkIcon type={type} />
+    </a>
+  );
+}
 
 export function ProjectsSection() {
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [activeImages, setActiveImages] = useState<Record<string, string>>({});
+  const [flippedProject, setFlippedProject] = useState<string | null>(null);
+
+  const filters = useMemo(() => {
+    const stacks = new Set(projects.flatMap((project) => project.stack));
+    const preferred = preferredFilters.filter((filter) => filter === "All" || stacks.has(filter));
+    return preferred;
+  }, []);
+
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === "All") {
+      return projects;
+    }
+
+    return projects.filter((project) => project.stack.includes(activeFilter));
+  }, [activeFilter]);
+
   return (
     <section id="projects" className="relative px-4 py-24">
       <div className="container relative z-10">
@@ -20,165 +81,201 @@ export function ProjectsSection() {
           description="Enterprise AI, food delivery, mobile commerce, SaaS, and banking platform work with modern architectures and refined user experiences."
         />
 
+        <div className="mb-8 flex flex-wrap justify-center gap-2">
+          {filters.map((filter) => (
+            <button
+              key={filter}
+              type="button"
+              className={cn(
+                "rounded-full border px-4 py-2 text-sm font-semibold transition",
+                activeFilter === filter
+                  ? "border-primary bg-primary text-white shadow-glow"
+                  : "border-white/10 bg-white/5 text-muted-foreground hover:border-primary/40 hover:text-foreground light:border-slate-200 light:bg-white",
+              )}
+              onClick={() => {
+                setActiveFilter(filter);
+                setFlippedProject(null);
+              }}
+            >
+              {filter}
+            </button>
+          ))}
+        </div>
+
         <div className="grid gap-6 lg:grid-cols-2">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <Reveal key={project.title} delay={index * 0.08}>
-              <Card className="group h-full overflow-hidden p-0">
-                <div className="relative h-72 overflow-hidden rounded-t-[2rem] border-b border-white/10 bg-[#050816] light:border-slate-200">
-                  {project.imageUrls?.[0] ? (
-                    <>
-                      <motion.div className="absolute inset-0" whileHover={{ scale: 1.06 }} transition={{ duration: 0.55 }}>
-                        <Image
-                          src={project.imageUrls[0]}
-                          alt={`${project.company ?? project.title} project thumbnail`}
-                          fill
-                          sizes="(min-width: 1024px) 50vw, 100vw"
-                          className="object-cover object-top"
-                        />
-                      </motion.div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/85 via-[#050816]/20 to-transparent" />
-                      <div className="absolute left-5 right-5 top-5 flex items-center justify-between">
-                        <div className="grid h-11 w-11 place-items-center rounded-2xl border border-white/15 bg-black/35 text-cyan-100 backdrop-blur-xl">
-                          <Layers3 className="h-5 w-5" />
-                        </div>
-                        {project.featured ? <Badge>Featured</Badge> : null}
-                      </div>
-                      {project.imageUrls.length > 1 ? (
-                        <div className="absolute bottom-5 left-5 right-5 grid grid-cols-3 gap-3">
-                          {project.imageUrls.slice(0, 3).map((imageUrl, imageIndex) => (
-                            <div
-                              key={imageUrl}
-                              className="relative h-16 overflow-hidden rounded-2xl border border-white/20 bg-white/10 shadow-2xl"
-                            >
-                              <Image
-                                src={imageUrl}
-                                alt={`${project.company ?? project.title} thumbnail ${imageIndex + 1}`}
-                                fill
-                                sizes="160px"
-                                className="object-cover object-top"
-                              />
+              <div className="h-[32.5rem] [perspective:1600px]">
+                <motion.article
+                  className="relative h-full cursor-pointer [transform-style:preserve-3d]"
+                  animate={{ rotateY: flippedProject === project.title ? 180 : 0 }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  onClick={() => setFlippedProject((current) => (current === project.title ? null : project.title))}
+                >
+                  <Card className="absolute inset-0 overflow-hidden p-0 [backface-visibility:hidden]">
+                    <div className="relative h-[12.5rem] overflow-hidden rounded-t-[2rem] border-b border-white/10 bg-[#050816] light:border-slate-200">
+                      {project.imageUrls?.[0] ? (
+                        <>
+                          <motion.div className="absolute inset-0" whileHover={{ scale: 1.05 }} transition={{ duration: 0.55 }}>
+                            <Image
+                              src={activeImages[project.title] ?? project.imageUrls[0]}
+                              alt={`${project.company ?? project.title} project thumbnail`}
+                              fill
+                              sizes="(min-width: 1024px) 50vw, 100vw"
+                              className="object-cover object-top"
+                            />
+                          </motion.div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/80 via-[#050816]/10 to-transparent" />
+                          <div className="absolute left-4 right-4 top-4 flex items-center justify-between">
+                            <div className="grid h-10 w-10 place-items-center rounded-2xl border border-white/15 bg-black/35 text-cyan-100 backdrop-blur-xl">
+                              <Layers3 className="h-5 w-5" />
                             </div>
-                          ))}
-                        </div>
+                            {project.featured ? <Badge>Featured</Badge> : null}
+                          </div>
+                        </>
                       ) : null}
-                    </>
-                  ) : (
-                    <>
-                      <motion.div
-                        className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.55),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(139,92,246,0.48),transparent_32%),linear-gradient(135deg,rgba(15,23,42,0.9),rgba(2,6,23,0.96))]"
-                        whileHover={{ scale: 1.06 }}
-                        transition={{ duration: 0.55 }}
-                      />
-                      <div className="absolute inset-6 rounded-[1.5rem] border border-white/10 bg-white/10 p-5 backdrop-blur-xl">
-                        <div className="flex items-center justify-between">
-                          <div className="grid h-12 w-12 place-items-center rounded-2xl bg-white/10 text-cyan-100">
-                            <Layers3 className="h-6 w-6" />
-                          </div>
-                          {project.featured ? <Badge>Featured</Badge> : null}
-                        </div>
-                        <div className="mt-10 space-y-3">
-                          <div className="h-3 w-2/3 rounded-full bg-white/25" />
-                          <div className="h-3 w-1/2 rounded-full bg-white/20" />
-                          <div className="grid grid-cols-3 gap-3 pt-3">
-                            <div className="h-16 rounded-2xl bg-white/10" />
-                            <div className="h-16 rounded-2xl bg-white/20" />
-                            <div className="h-16 rounded-2xl bg-white/10" />
-                          </div>
+                    </div>
+
+                    {project.imageUrls?.length ? (
+                      <div className="-mt-7 grid grid-cols-3 gap-2 px-5">
+                        {project.imageUrls.slice(0, 3).map((imageUrl, imageIndex) => (
+                          <button
+                            key={imageUrl}
+                            type="button"
+                            className={cn(
+                              "relative h-16 overflow-hidden rounded-2xl border bg-white/10 shadow-2xl transition",
+                              (activeImages[project.title] ?? project.imageUrls?.[0]) === imageUrl
+                                ? "border-primary ring-2 ring-primary/30"
+                                : "border-white/20 hover:border-primary/50",
+                            )}
+                            onClick={(event) => {
+                              event.stopPropagation();
+                              setActiveImages((current) => ({ ...current, [project.title]: imageUrl }));
+                            }}
+                            aria-label={`Show ${project.company ?? project.title} thumbnail ${imageIndex + 1}`}
+                          >
+                            <Image
+                              src={imageUrl}
+                              alt={`${project.company ?? project.title} thumbnail ${imageIndex + 1}`}
+                              fill
+                              sizes="160px"
+                              className="object-cover object-top"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    ) : null}
+
+                    <div className="p-5 pb-4">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <h3 className="font-sora text-2xl font-semibold">{project.company ?? project.title}</h3>
+                          {project.company && project.title !== project.company ? (
+                            <p className="mt-2 text-sm font-semibold text-primary">Project: {project.title}</p>
+                          ) : null}
                         </div>
                       </div>
-                    </>
-                  )}
-                </div>
 
-                <div className="p-7">
-                  <h3 className="font-sora text-2xl font-semibold">{project.company ?? project.title}</h3>
-                  {project.company && project.title !== project.company ? (
-                    <p className="mt-2 text-sm font-semibold text-primary">Project: {project.title}</p>
-                  ) : null}
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.role ? <Badge className="normal-case tracking-normal">{project.role}</Badge> : null}
-                  </div>
-                  <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                    {project.period ? (
-                      <span className="inline-flex items-center gap-2">
-                        <CalendarDays className="h-4 w-4 text-accent" />
-                        {project.period}
-                      </span>
-                    ) : null}
-                    {project.location ? (
-                      <span className="inline-flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-accent" />
-                        {project.location}
-                      </span>
-                    ) : null}
-                  </div>
-                  <p className="mt-4 text-sm leading-7 text-muted-foreground">{project.description}</p>
-                  <p className="mt-4 text-sm font-semibold text-accent">{project.impact}</p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {project.role ? <Badge className="normal-case tracking-normal">{project.role}</Badge> : null}
+                      </div>
 
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {project.stack.map((technology) => (
-                      <Badge key={technology} className="normal-case tracking-normal">
-                        {technology}
-                      </Badge>
-                    ))}
-                  </div>
+                      <div className="mt-3 flex flex-wrap gap-3 text-sm text-muted-foreground">
+                        {project.period ? (
+                          <span className="inline-flex items-center gap-2">
+                            <CalendarDays className="h-4 w-4 text-accent" />
+                            {project.period}
+                          </span>
+                        ) : null}
+                        {project.location ? (
+                          <span className="inline-flex items-center gap-2">
+                            <MapPin className="h-4 w-4 text-accent" />
+                            {project.location}
+                          </span>
+                        ) : null}
+                      </div>
 
-                  {project.responsibilities?.length ? (
-                    <div className="mt-7">
-                      <h4 className="text-sm font-semibold text-foreground">Responsibilities</h4>
-                      <ul className="mt-3 space-y-2">
-                        {project.responsibilities.map((responsibility) => (
-                          <li key={responsibility} className="flex gap-3 text-sm leading-6 text-muted-foreground">
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                            <span>{responsibility}</span>
-                          </li>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {project.stack.slice(0, 7).map((technology) => (
+                          <Badge key={technology} className="normal-case tracking-normal">
+                            {technology}
+                          </Badge>
                         ))}
-                      </ul>
-                    </div>
-                  ) : null}
+                      </div>
 
-                  {project.achievements?.length ? (
-                    <div className="mt-7">
-                      <h4 className="text-sm font-semibold text-foreground">Achievements</h4>
-                      <ul className="mt-3 space-y-2">
-                        {project.achievements.map((achievement) => (
-                          <li key={achievement} className="flex gap-3 text-sm leading-6 text-muted-foreground">
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
-                            <span>{achievement}</span>
-                          </li>
+                      <div className="mt-4 flex flex-wrap gap-2" onClick={(event) => event.stopPropagation()}>
+                        {project.companyUrl ? (
+                          <ProjectActionLink href={project.companyUrl} label={`${project.company} web`} type="web" />
+                        ) : null}
+                        {project.links?.map((link) => (
+                          <ProjectActionLink key={link.href} href={link.href} label={link.label} type={link.type} />
                         ))}
-                      </ul>
+                        {project.demoUrl ? (
+                          <ProjectActionLink href={project.demoUrl} label="Web" type="web" />
+                        ) : null}
+                        {project.githubUrl ? (
+                          <ProjectActionLink href={project.githubUrl} label="GitHub" />
+                        ) : null}
+                      </div>
                     </div>
-                  ) : null}
+                  </Card>
 
-                  <div className="mt-7 flex flex-wrap gap-3">
-                    {project.companyUrl ? (
-                      <Button href={project.companyUrl} variant="secondary" size="sm">
-                        Company
-                        <ExternalLink className="h-4 w-4" />
-                      </Button>
-                    ) : null}
-                    {project.links?.map((link) => (
-                      <Button key={link.href} href={link.href} variant="outline" size="sm">
-                        {link.label}
-                        <ExternalLink className="h-4 w-4" />
-                      </Button>
-                    ))}
-                    {project.demoUrl ? (
-                      <Button href={project.demoUrl} variant="primary" size="sm">
-                        Reference
-                        <ArrowUpRight className="h-4 w-4" />
-                      </Button>
-                    ) : null}
-                    {project.githubUrl ? (
-                      <Button href={project.githubUrl} variant="outline" size="sm">
-                        GitHub
-                        <GitBranch className="h-4 w-4" />
-                      </Button>
-                    ) : null}
-                  </div>
-                </div>
-              </Card>
+                  <Card className="absolute inset-0 overflow-hidden p-6 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                    <div className="flex h-full flex-col">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <h3 className="font-sora text-2xl font-semibold">{project.company ?? project.title}</h3>
+                          <p className="mt-2 text-sm font-semibold text-primary">Project: {project.title}</p>
+                        </div>
+                        <button
+                          type="button"
+                          className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition hover:text-foreground"
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            setFlippedProject(null);
+                          }}
+                          aria-label="Back to project summary"
+                        >
+                          <RotateCcw className="h-4 w-4" />
+                        </button>
+                      </div>
+
+                      <div className="no-scrollbar mt-5 overflow-y-auto pr-2">
+                        <p className="text-sm leading-7 text-muted-foreground">{project.description}</p>
+                        <p className="mt-4 text-sm font-semibold leading-6 text-accent">{project.impact}</p>
+
+                        {project.responsibilities?.length ? (
+                          <div className="mt-6">
+                            <h4 className="text-sm font-semibold text-foreground">Contributions</h4>
+                            <ul className="mt-3 space-y-2">
+                              {project.responsibilities.map((responsibility) => (
+                                <li key={responsibility} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                                  <span>{responsibility}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
+
+                        {project.achievements?.length ? (
+                          <div className="mt-6">
+                            <h4 className="text-sm font-semibold text-foreground">Impact</h4>
+                            <ul className="mt-3 space-y-2">
+                              {project.achievements.map((achievement) => (
+                                <li key={achievement} className="flex gap-3 text-sm leading-6 text-muted-foreground">
+                                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />
+                                  <span>{achievement}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+                  </Card>
+                </motion.article>
+              </div>
             </Reveal>
           ))}
         </div>

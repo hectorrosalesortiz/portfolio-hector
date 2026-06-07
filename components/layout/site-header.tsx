@@ -3,12 +3,13 @@
 import Switch from "@mui/material/Switch";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/components/providers/app-providers";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navItems = [
+  { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
@@ -18,8 +19,33 @@ const navItems = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("#home");
   const { mode, setMode } = useContext(ThemeContext);
   const isLight = mode === "light";
+
+  useEffect(() => {
+    function updateActiveSection() {
+      const scrollPosition = window.scrollY + 180;
+      const currentSection = [...navItems].reverse().find((item) => {
+        const section = document.querySelector<HTMLElement>(item.href);
+        return section ? section.offsetTop <= scrollPosition : false;
+      });
+
+      if (currentSection) {
+        setActiveSection(currentSection.href);
+      }
+    }
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateActiveSection);
+  }, []);
+
+  function handleNavClick(href: string) {
+    setActiveSection(href);
+    setOpen(false);
+  }
 
   function toggleMode() {
     setMode(isLight ? "dark" : "light");
@@ -28,7 +54,7 @@ export function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-4 z-50 px-4">
       <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-background/65 px-4 py-3 shadow-2xl shadow-black/20 backdrop-blur-2xl light:border-slate-200 light:bg-white/75">
-        <a href="#home" className="flex items-center gap-3" aria-label="Go to home">
+        <a href="#home" className="flex items-center gap-3" aria-label="Go to home" onClick={() => handleNavClick("#home")}>
           <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-primary via-secondary to-accent font-space text-sm font-black text-white shadow-glow">
             HR
           </span>
@@ -42,9 +68,20 @@ export function SiteHeader() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition hover:bg-white/10 hover:text-foreground light:hover:bg-slate-900/5"
+              className={cn(
+                "relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition hover:text-foreground",
+                activeSection === item.href ? "text-white light:text-slate-950" : "text-muted-foreground",
+              )}
+              onClick={() => handleNavClick(item.href)}
             >
-              {item.label}
+              {activeSection === item.href ? (
+                <motion.span
+                  layoutId="active-nav-pill"
+                  className="absolute inset-0 z-0 rounded-full border border-white/15 bg-gradient-to-r from-primary/85 via-secondary/65 to-accent/80 shadow-glow light:border-slate-950/10 light:from-teal-100 light:via-violet-100 light:to-amber-100"
+                  transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                />
+              ) : null}
+              <span className="relative z-10">{item.label}</span>
             </a>
           ))}
         </div>
@@ -59,7 +96,7 @@ export function SiteHeader() {
               slotProps={{ input: { "aria-label": "Toggle light mode" } }}
             />
           </div>
-          <Button href="#contact" size="sm" className="hidden md:inline-flex">
+          <Button href="#contact" size="sm" className="hidden md:inline-flex" onClick={() => handleNavClick("#contact")}>
             Contact
           </Button>
           <button
@@ -86,10 +123,20 @@ export function SiteHeader() {
               <a
                 key={item.href}
                 href={item.href}
-                className={cn("block rounded-2xl px-4 py-3 text-sm font-semibold text-muted-foreground hover:bg-white/10 hover:text-foreground")}
-                onClick={() => setOpen(false)}
+                className={cn(
+                  "relative block overflow-hidden rounded-2xl px-4 py-3 text-sm font-semibold hover:text-foreground",
+                  activeSection === item.href ? "text-white light:text-slate-950" : "text-muted-foreground",
+                )}
+                onClick={() => handleNavClick(item.href)}
               >
-                {item.label}
+                {activeSection === item.href ? (
+                  <motion.span
+                    layoutId="active-mobile-nav-pill"
+                    className="absolute inset-0 z-0 rounded-2xl border border-white/15 bg-gradient-to-r from-primary/85 via-secondary/65 to-accent/80 shadow-glow light:border-slate-950/10 light:from-teal-100 light:via-violet-100 light:to-amber-100"
+                    transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                  />
+                ) : null}
+                <span className="relative z-10">{item.label}</span>
               </a>
             ))}
             <button

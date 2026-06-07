@@ -34,13 +34,13 @@ export function HeroSection() {
           </motion.div>
 
           <motion.h1
-            className="mt-7 font-sora text-5xl font-semibold tracking-[-0.06em] text-foreground sm:text-6xl lg:text-7xl"
+            className="mt-7 font-sora text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-foreground sm:text-6xl lg:text-7xl"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="block">{profile.name}</span>
-            <span className="gradient-text block">{profile.title}</span>
+            <span className="gradient-text mt-3 block text-4xl leading-tight sm:text-5xl lg:text-6xl">{profile.title}</span>
           </motion.h1>
 
           <motion.p
@@ -53,22 +53,22 @@ export function HeroSection() {
           </motion.p>
 
           <motion.div
-            className="mt-9 flex flex-col gap-4 sm:flex-row"
+            className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.48, duration: 0.75 }}
           >
-            <MagneticButton href="/resume" download>
-              <Download className="h-5 w-5" />
+            <MagneticButton href="/resume" download className="w-full whitespace-nowrap px-5 text-sm sm:w-auto">
+              <Download className="h-4 w-4" />
               Download Resume
             </MagneticButton>
-            <MagneticButton href="#contact" variant="secondary">
-              <Send className="h-5 w-5" />
+            <MagneticButton href="#contact" variant="secondary" className="w-full whitespace-nowrap px-5 text-sm sm:w-auto">
+              <Send className="h-4 w-4" />
               Contact Me
             </MagneticButton>
-            <MagneticButton href="#projects" variant="outline">
+            <MagneticButton href="#projects" variant="outline" className="w-full whitespace-nowrap px-5 text-sm sm:w-auto">
               View Projects
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-4 w-4" />
             </MagneticButton>
           </motion.div>
         </motion.div>

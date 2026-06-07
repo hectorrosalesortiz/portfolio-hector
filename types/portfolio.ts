@@ -1,4 +1,6 @@
-import type { LucideIcon } from "lucide-react";
+import type { ComponentType } from "react";
+
+export type PortfolioIcon = ComponentType<{ className?: string }>;
 
 export type Stat = {
   value: string;
@@ -15,6 +17,7 @@ export type TimelineItem = {
   links?: {
     label: string;
     href: string;
+    type?: "web" | "ios" | "android" | "company" | "reference";
   }[];
   technologies: string[];
   responsibilities: string[];
@@ -26,7 +29,7 @@ export type SkillCategory = {
   description: string;
   level: number;
   skills: string[];
-  icon: LucideIcon;
+  icon: PortfolioIcon;
 };
 
 export type Project = {
@@ -42,6 +45,7 @@ export type Project = {
   links?: {
     label: string;
     href: string;
+    type?: "web" | "ios" | "android" | "company" | "reference";
   }[];
   demoUrl?: string;
   githubUrl?: string;
@@ -55,5 +59,5 @@ export type ContactMethod = {
   label: string;
   value: string;
   href?: string;
-  icon: LucideIcon;
+  icon: PortfolioIcon;
 };

@@ -38,15 +38,15 @@ const config: Config = {
         space: ["var(--font-space-grotesk)", "Space Grotesk", "sans-serif"],
       },
       boxShadow: {
-        glow: "0 0 70px rgba(59, 130, 246, 0.28)",
+        glow: "0 0 70px rgba(20, 184, 166, 0.28)",
         "cyan-glow": "0 0 60px rgba(6, 182, 212, 0.25)",
         "violet-glow": "0 0 70px rgba(139, 92, 246, 0.28)",
       },
       backgroundImage: {
         "luxury-gradient":
-          "radial-gradient(circle at top left, rgba(59,130,246,0.28), transparent 34%), radial-gradient(circle at top right, rgba(139,92,246,0.23), transparent 32%), linear-gradient(135deg, #050816 0%, #0F172A 52%, #020617 100%)",
+          "radial-gradient(circle at top left, rgba(20,184,166,0.26), transparent 34%), radial-gradient(circle at top right, rgba(139,92,246,0.23), transparent 32%), linear-gradient(135deg, #050816 0%, #0F172A 52%, #020617 100%)",
         "mesh-gradient":
-          "linear-gradient(120deg, rgba(59,130,246,0.24), rgba(139,92,246,0.18), rgba(6,182,212,0.2))",
+          "linear-gradient(120deg, rgba(20,184,166,0.24), rgba(139,92,246,0.18), rgba(245,158,11,0.2))",
       },
       keyframes: {
         aurora: {

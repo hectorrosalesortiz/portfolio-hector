@@ -134,7 +134,7 @@ export function ExperienceSection() {
                               <div>
                                 <h4 className="mb-3 flex items-center gap-2 text-sm font-semibold text-foreground">
                                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
-                                  Responsibilities
+                                  Contributions
                                 </h4>
                                 <ul className="space-y-3">
                                   {item.responsibilities.map((responsibility) => (
@@ -149,7 +149,7 @@ export function ExperienceSection() {
                               <div>
                                 <h4 className="mb-3 flex items-center gap-2 text-sm font-semibold text-foreground">
                                   <Sparkles className="h-5 w-5 shrink-0 text-accent" />
-                                  Achievements
+                                  Impact
                                 </h4>
                                 <ul className="space-y-3">
                                   {item.achievements.map((achievement) => (

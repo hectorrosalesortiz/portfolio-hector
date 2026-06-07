@@ -43,16 +43,19 @@ export function EducationSection() {
                   <Award className="h-5 w-5" />
                   <span className="text-sm font-semibold uppercase tracking-[0.22em]">{education.period}</span>
                 </div>
-                <h3 className="mt-5 font-sora text-3xl font-semibold">{education.institution}</h3>
-                <a
-                  href={education.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:text-accent"
-                >
-                  Official university website
-                  <ExternalLink className="h-4 w-4" />
-                </a>
+                <div className="mt-5 flex items-start justify-between gap-4">
+                  <h3 className="font-sora text-3xl font-semibold">{education.institution}</h3>
+                  <a
+                    href={education.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-muted-foreground transition hover:-translate-y-0.5 hover:border-primary/50 hover:text-foreground light:border-slate-200 light:bg-white"
+                    aria-label="Open official university website"
+                    title="Official university website"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                  </a>
+                </div>
                 <div className="mt-8 space-y-3">
                   <p className="text-xl font-semibold text-foreground">{education.degree}</p>
                   <p className="text-lg leading-7 text-muted-foreground">{education.field}</p>

@@ -9,9 +9,9 @@
   --muted: 218 33% 18%;
   --muted-foreground: 215 20% 65%;
   --border: 217 33% 21%;
-  --primary: 217 91% 60%;
-  --secondary: 258 90% 66%;
-  --accent: 189 94% 43%;
+  --primary: 172 76% 42%;
+  --secondary: 264 88% 66%;
+  --accent: 38 92% 56%;
   --card: 222 47% 11%;
   --card-foreground: 0 0% 100%;
   color-scheme: dark;
@@ -24,9 +24,9 @@
   --muted: 214 32% 91%;
   --muted-foreground: 215 16% 40%;
   --border: 214 32% 82%;
-  --primary: 217 91% 55%;
-  --secondary: 258 90% 60%;
-  --accent: 189 94% 40%;
+  --primary: 172 76% 36%;
+  --secondary: 264 84% 58%;
+  --accent: 38 92% 48%;
   --card: 0 0% 100%;
   --card-foreground: 222 47% 9%;
   color-scheme: light;
@@ -44,7 +44,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 20% 10%, rgba(59, 130, 246, 0.2), transparent 30rem),
+    radial-gradient(circle at 20% 10%, rgba(20, 184, 166, 0.18), transparent 30rem),
     radial-gradient(circle at 80% 0%, rgba(139, 92, 246, 0.18), transparent 28rem),
     hsl(var(--background));
   color: hsl(var(--foreground));
@@ -97,16 +97,24 @@ textarea {
 }
 
 .gradient-text {
-  background: linear-gradient(120deg, #ffffff, #bfdbfe 34%, #c4b5fd 68%, #67e8f9);
+  background: linear-gradient(120deg, #2dd4bf, #fbbf24 46%, #a78bfa 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .light .gradient-text {
-  background: linear-gradient(120deg, #0f172a, #2563eb 34%, #7c3aed 68%, #0891b2);
+  background: linear-gradient(120deg, #0f766e, #b45309 46%, #6d28d9 100%);
   -webkit-background-clip: text;
   background-clip: text;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 .animated-border {
@@ -119,7 +127,7 @@ textarea {
   inset: -1px;
   z-index: -1;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(139, 92, 246, 0.48), rgba(6, 182, 212, 0.8));
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.8), rgba(139, 92, 246, 0.48), rgba(245, 158, 11, 0.72));
   opacity: 0.54;
   filter: blur(14px);
 }

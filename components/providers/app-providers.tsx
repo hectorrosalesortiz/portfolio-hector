@@ -30,7 +30,7 @@ export function AppProviders({ children }: AppProvidersProps) {
       createTheme({
         palette: {
           mode,
-          primary: { main: "#3B82F6" },
+          primary: { main: "#14B8A6" },
           secondary: { main: "#8B5CF6" },
           background: {
             default: mode === "dark" ? "#050816" : "#F8FAFC",

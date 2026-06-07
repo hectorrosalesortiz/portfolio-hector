@@ -14,10 +14,10 @@ export function GET() {
 ${item.company} | ${item.location} | ${item.period}
 ${item.project ? `Project: ${item.project}\n` : ""}${links.length ? `${links.join("\n")}\n` : ""}Technologies: ${item.technologies.join(", ")}
 
-Responsibilities:
+Contributions:
 - ${item.responsibilities.join("\n- ")}
 
-Achievements:
+Impact:
 - ${item.achievements.join("\n- ")}`;
     })
     .join("\n\n");

@@ -1,11 +1,68 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FaAws, FaMicrosoft } from "react-icons/fa";
+import type { IconType } from "react-icons";
+import {
+  SiAngular,
+  SiDjango,
+  SiDocker,
+  SiFastapi,
+  SiFlutter,
+  SiGooglecloud,
+  SiGraphql,
+  SiKotlin,
+  SiLangchain,
+  SiLaravel,
+  SiMui,
+  SiNestjs,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiOpenai,
+  SiPhp,
+  SiPython,
+  SiReact,
+  SiSpringboot,
+  SiSwift,
+  SiTailwindcss,
+  SiTypescript,
+  SiKubernetes,
+} from "react-icons/si";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { Reveal } from "@/components/motion/reveal";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { skillCategories } from "@/lib/portfolio-data";
+
+const skillIcons: Record<string, IconType> = {
+  Angular: SiAngular,
+  AWS: FaAws,
+  Azure: FaMicrosoft,
+  Django: SiDjango,
+  Docker: SiDocker,
+  FastAPI: SiFastapi,
+  Flutter: SiFlutter,
+  GCP: SiGooglecloud,
+  GraphQL: SiGraphql,
+  Kotlin: SiKotlin,
+  Kubernetes: SiKubernetes,
+  LangChain: SiLangchain,
+  Laravel: SiLaravel,
+  "Material UI": SiMui,
+  NestJS: SiNestjs,
+  "Next.js": SiNextdotjs,
+  "Node.js": SiNodedotjs,
+  OpenAI: SiOpenai,
+  PHP: SiPhp,
+  Python: SiPython,
+  React: SiReact,
+  "React Native": SiReact,
+  "Spring Boot": SiSpringboot,
+  Swift: SiSwift,
+  SwiftUI: SiSwift,
+  Tailwind: SiTailwindcss,
+  TypeScript: SiTypescript,
+};
 
 export function SkillsSection() {
   return (
@@ -50,11 +107,16 @@ export function SkillsSection() {
                   </div>
 
                   <div className="mt-6 flex flex-wrap gap-2">
-                    {category.skills.map((skill) => (
-                      <Badge key={skill} className="normal-case tracking-normal">
-                        {skill}
-                      </Badge>
-                    ))}
+                    {category.skills.map((skill) => {
+                      const SkillIcon = skillIcons[skill];
+
+                      return (
+                        <Badge key={skill} className="gap-1.5 normal-case tracking-normal">
+                          {SkillIcon ? <SkillIcon className="h-3.5 w-3.5" /> : null}
+                          {skill}
+                        </Badge>
+                      );
+                    })}
                   </div>
                 </div>
               </Card>

@@ -65,8 +65,8 @@ function NeuralCore() {
         <mesh ref={meshRef}>
           <icosahedronGeometry args={[1.14, 4]} />
           <meshStandardMaterial
-            color="#3B82F6"
-            emissive="#06B6D4"
+            color="#14B8A6"
+            emissive="#F59E0B"
             emissiveIntensity={0.35}
             metalness={0.25}
             roughness={0.18}
@@ -79,7 +79,7 @@ function NeuralCore() {
         {nodes.map((node, index) => (
           <mesh key={`${node.x}-${index}`} position={node}>
             <sphereGeometry args={[0.035 + (index % 3) * 0.01, 16, 16]} />
-            <meshStandardMaterial color={index % 2 ? "#8B5CF6" : "#06B6D4"} emissive="#3B82F6" emissiveIntensity={1.2} />
+            <meshStandardMaterial color={index % 2 ? "#8B5CF6" : "#14B8A6"} emissive="#F59E0B" emissiveIntensity={1.2} />
           </mesh>
         ))}
 
@@ -87,7 +87,7 @@ function NeuralCore() {
           <Line
             key={`${start.x}-${end.x}-${index}`}
             points={[start, end]}
-            color={index % 2 ? "#8B5CF6" : "#06B6D4"}
+            color={index % 2 ? "#8B5CF6" : "#14B8A6"}
             lineWidth={0.65}
             transparent
             opacity={0.42}
@@ -95,7 +95,7 @@ function NeuralCore() {
         ))}
 
         <Points positions={particlePositions} stride={3}>
-          <PointMaterial transparent color="#93C5FD" size={0.018} sizeAttenuation depthWrite={false} opacity={0.62} />
+          <PointMaterial transparent color="#CCFBF1" size={0.018} sizeAttenuation depthWrite={false} opacity={0.62} />
         </Points>
       </Float>
     </group>
@@ -109,7 +109,7 @@ export function HeroCanvas() {
         <Suspense fallback={null}>
           <PerspectiveCamera makeDefault position={[0, 0, 5.2]} fov={44} />
           <ambientLight intensity={0.55} />
-          <pointLight position={[3, 4, 5]} intensity={26} color="#3B82F6" />
+          <pointLight position={[3, 4, 5]} intensity={26} color="#14B8A6" />
           <pointLight position={[-4, -2, 3]} intensity={16} color="#8B5CF6" />
           <NeuralCore />
           <Environment preset="night" />
