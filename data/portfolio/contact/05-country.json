@@ -1,0 +1,5 @@
+{
+  "label": "Country",
+  "valueFromProfile": "country",
+  "icon": "MapPin"
+}

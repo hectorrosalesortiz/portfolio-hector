@@ -1,0 +1,7 @@
+{
+  "title": "Cloud & DevOps",
+  "description": "Reliable delivery pipelines, observability-ready deployments, and cloud-native architecture.",
+  "level": 90,
+  "icon": "SiKubernetes",
+  "skills": ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "CI/CD"]
+}

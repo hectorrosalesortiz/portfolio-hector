@@ -1,0 +1,7 @@
+{
+  "title": "Mobile",
+  "description": "High-performance mobile experiences across Flutter, React Native, and native ecosystems.",
+  "level": 92,
+  "icon": "SiFlutter",
+  "skills": ["Flutter", "React Native", "Swift", "SwiftUI", "Kotlin"]
+}

@@ -10,372 +10,169 @@ import {
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { SiFlutter, SiKubernetes, SiNodedotjs, SiOpenai, SiReact } from "react-icons/si";
-import type { ContactMethod, Project, SkillCategory, Stat, TimelineItem } from "@/types/portfolio";
+import capabilityAiProductEngineering from "@/data/portfolio/capabilities/01-ai-product-engineering.json";
+import capabilityTechnicalLeadership from "@/data/portfolio/capabilities/02-technical-leadership.json";
+import capabilityCloudArchitecture from "@/data/portfolio/capabilities/03-cloud-architecture.json";
+import capabilityEndToEndPlatforms from "@/data/portfolio/capabilities/04-end-to-end-platforms.json";
+import contactEmail from "@/data/portfolio/contact/01-email.json";
+import contactTelegram from "@/data/portfolio/contact/02-telegram.json";
+import contactWhatsapp from "@/data/portfolio/contact/03-whatsapp.json";
+import contactLinkedin from "@/data/portfolio/contact/04-linkedin.json";
+import contactCountry from "@/data/portfolio/contact/05-country.json";
+import educationJson from "@/data/portfolio/education.json";
+import profileJson from "@/data/portfolio/profile.json";
+import projectGlobant from "@/data/portfolio/projects/01-globant-enterprise-ai.json";
+import projectFoodDelivery from "@/data/portfolio/projects/02-food-delivery-super-app.json";
+import projectRappi from "@/data/portfolio/projects/03-rappi-consumer-platform.json";
+import projectWizeline from "@/data/portfolio/projects/04-wizeline-enterprise-saas.json";
+import projectSofttek from "@/data/portfolio/projects/05-softtek-enterprise-solutions.json";
+import skillAiLlm from "@/data/portfolio/skills/01-ai-llm.json";
+import skillFrontend from "@/data/portfolio/skills/02-frontend.json";
+import skillBackend from "@/data/portfolio/skills/03-backend.json";
+import skillMobile from "@/data/portfolio/skills/04-mobile.json";
+import skillCloudDevops from "@/data/portfolio/skills/05-cloud-devops.json";
+import socialLinkedin from "@/data/portfolio/social/01-linkedin.json";
+import socialGithub from "@/data/portfolio/social/02-github.json";
+import socialProjects from "@/data/portfolio/social/03-projects.json";
+import statYearsExperience from "@/data/portfolio/stats/01-years-experience.json";
+import statProjects from "@/data/portfolio/stats/02-projects.json";
+import statAiSpecialist from "@/data/portfolio/stats/03-ai-specialist.json";
+import statFullStack from "@/data/portfolio/stats/04-full-stack.json";
+import timelineSeniorAi from "@/data/portfolio/timeline/01-senior-ai-full-stack-engineer.json";
+import timelineSeniorFullStack from "@/data/portfolio/timeline/02-senior-full-stack-developer.json";
+import timelineFullStackMobile from "@/data/portfolio/timeline/03-full-stack-mobile-developer.json";
+import timelineJuniorWeb from "@/data/portfolio/timeline/04-junior-web-developer.json";
+import type {
+  Capability,
+  ContactMethod,
+  Education,
+  PortfolioIcon,
+  Profile,
+  Project,
+  SkillCategory,
+  SocialLink,
+  Stat,
+  TimelineItem,
+} from "@/types/portfolio";
 import { formatWhatsappLink } from "@/lib/utils";
 
-export const profile = {
-  name: "Hector Rosales Ortiz",
-  title: "Senior AI & Full Stack Engineer",
-  subtitle: "Building AI-Powered Products, Enterprise Platforms, and Scalable Digital Experiences.",
-  email: "mern2025@outlook.com",
-  telegram: "@yesteru",
-  whatsapp: "+1 (856) 495-1739",
-  linkedin: "https://www.linkedin.com/in/héctor-rosales-ortiz-69a9607a/",
-  country: "Mexico",
+type IconKey = keyof typeof iconMap;
+type ProfileField = keyof typeof profileJson;
+
+type RawIconItem = {
+  icon: IconKey;
 };
 
-export const stats: Stat[] = [
-  { value: "10+", label: "Years Experience" },
-  { value: "50+", label: "Projects" },
-  { value: "AI", label: "Specialist" },
-  { value: "Full Stack", label: "Expert" },
-];
+type RawContactMethod = RawIconItem & {
+  label: string;
+  value?: string;
+  valueFromProfile?: ProfileField;
+  href?: string;
+  hrefFromProfile?: ProfileField;
+};
 
-export const capabilities = [
-  {
-    title: "AI Product Engineering",
-    description: "LLM-powered workflows, RAG platforms, agentic systems, prompt strategies, and production-grade AI assistants.",
-    icon: BrainCircuit,
-  },
-  {
-    title: "Technical Leadership",
-    description: "Architecture decisions, mentoring, code quality, delivery strategy, and enterprise stakeholder alignment.",
-    icon: BriefcaseBusiness,
-  },
-  {
-    title: "Cloud Architecture",
-    description: "Scalable platforms across AWS, Azure, and GCP with containerized workloads and CI/CD automation.",
-    icon: CloudCog,
-  },
-  {
-    title: "End-to-End Platforms",
-    description: "Modern web, mobile, backend, API, data, and DevOps delivery for high-growth digital products.",
-    icon: Rocket,
-  },
-];
+type RawSocialLink = RawIconItem & {
+  label: string;
+  href?: string;
+  hrefFromProfile?: ProfileField;
+};
 
-export const skillCategories: SkillCategory[] = [
-  {
-    title: "AI & LLM",
-    description: "Applied AI systems that combine model reasoning, retrieval, tools, and product UX.",
-    level: 96,
-    icon: SiOpenai,
-    skills: ["OpenAI", "LangChain", "LlamaIndex", "RAG", "AI Agents", "Vector Databases", "Prompt Engineering"],
-  },
-  {
-    title: "Frontend",
-    description: "Premium interfaces with strong accessibility, animation, and product polish.",
-    level: 95,
-    icon: SiReact,
-    skills: ["TypeScript", "React", "Next.js", "Angular", "Tailwind", "Material UI", "PHP", "Laravel"],
-  },
-  {
-    title: "Backend",
-    description: "Secure, scalable APIs and services for enterprise-grade systems.",
-    level: 92,
-    icon: SiNodedotjs,
-    skills: ["Python", "FastAPI", "Django", "Node.js", "NestJS", "Spring Boot", "GraphQL", "REST APIs"],
-  },
-  {
-    title: "Mobile",
-    description: "High-performance mobile experiences across Flutter, React Native, and native ecosystems.",
-    level: 92,
-    icon: SiFlutter,
-    skills: ["Flutter", "React Native", "Swift", "SwiftUI", "Kotlin"],
-  },
-  {
-    title: "Cloud & DevOps",
-    description: "Reliable delivery pipelines, observability-ready deployments, and cloud-native architecture.",
-    level: 90,
-    icon: SiKubernetes,
-    skills: ["AWS", "Azure", "GCP", "Docker", "Kubernetes", "CI/CD"],
-  },
-];
+const iconMap = {
+  BrainCircuit,
+  BriefcaseBusiness,
+  CloudCog,
+  FaGithub,
+  FaLinkedin,
+  FaTelegramPlane,
+  FaWhatsapp,
+  Globe2,
+  GraduationCap,
+  Mail,
+  MapPin,
+  Rocket,
+  SiFlutter,
+  SiKubernetes,
+  SiNodedotjs,
+  SiOpenai,
+  SiReact,
+} satisfies Record<string, PortfolioIcon>;
+
+function hydrateIcon<T extends RawIconItem>(item: T): Omit<T, "icon"> & { icon: PortfolioIcon } {
+  const { icon: iconKey, ...itemData } = item;
+
+  return {
+    ...itemData,
+    icon: iconMap[iconKey],
+  };
+}
+
+function resolveProfileValue(field: ProfileField) {
+  return profile[field];
+}
+
+function resolveProfileHref(field: ProfileField) {
+  if (field === "email") {
+    return `mailto:${profile.email}`;
+  }
+
+  if (field === "whatsapp") {
+    return formatWhatsappLink(profile.whatsapp);
+  }
+
+  return resolveProfileValue(field);
+}
+
+function hydrateContactMethod(item: RawContactMethod): ContactMethod {
+  return {
+    label: item.label,
+    value: item.value ?? (item.valueFromProfile ? resolveProfileValue(item.valueFromProfile) : ""),
+    href: item.href ?? (item.hrefFromProfile ? resolveProfileHref(item.hrefFromProfile) : undefined),
+    icon: iconMap[item.icon],
+  };
+}
+
+function hydrateSocialLink(item: RawSocialLink): SocialLink {
+  return {
+    label: item.label,
+    href: item.href ?? (item.hrefFromProfile ? resolveProfileHref(item.hrefFromProfile) : "#"),
+    icon: iconMap[item.icon],
+  };
+}
+
+export const profile: Profile = profileJson;
+
+export const stats: Stat[] = [statYearsExperience, statProjects, statAiSpecialist, statFullStack];
+
+export const capabilities: Capability[] = [
+  capabilityAiProductEngineering,
+  capabilityTechnicalLeadership,
+  capabilityCloudArchitecture,
+  capabilityEndToEndPlatforms,
+].map((item) => hydrateIcon(item as RawIconItem & Omit<Capability, "icon">));
+
+export const skillCategories: SkillCategory[] = [skillAiLlm, skillFrontend, skillBackend, skillMobile, skillCloudDevops].map(
+  (item) => hydrateIcon(item as RawIconItem & Omit<SkillCategory, "icon">),
+);
 
 export const timeline: TimelineItem[] = [
-  {
-    company: "Freelance",
-    role: "Senior AI & Full Stack Engineer",
-    location: "Remote",
-    period: "January 2024 - Present",
-    technologies: [
-      "Python",
-      "FastAPI",
-      "Next.js",
-      "React",
-      "TypeScript",
-      "OpenAI API",
-      "LangChain",
-      "LangGraph",
-      "LlamaIndex",
-      "Pinecone",
-      "AWS",
-      "Azure",
-      "Docker",
-      "Kubernetes",
-    ],
-    responsibilities: [
-      "Developed AI-powered applications and enterprise automation platforms.",
-      "Built RAG systems, AI assistants, and multi-agent workflows.",
-      "Integrated LLM technologies into existing business systems.",
-      "Designed cloud-native AI infrastructure and deployment pipelines.",
-      "Consulted clients on AI strategy and implementation.",
-    ],
-    achievements: [
-      "Delivered production-ready AI business solutions.",
-      "Built enterprise knowledge management and search systems.",
-      "Reduced operational costs through intelligent automation.",
-      "Successfully launched AI-powered SaaS products.",
-    ],
-  },
-  {
-    company: "Freelance",
-    role: "Senior Full Stack Developer",
-    location: "Remote",
-    period: "November 2020 - December 2023",
-    technologies: [
-      "React",
-      "Next.js",
-      "React Native",
-      "Node.js",
-      "NestJS",
-      "TypeScript",
-      "GraphQL",
-      "PostgreSQL",
-      "MongoDB",
-      "AWS",
-      "Docker",
-    ],
-    responsibilities: [
-      "Designed and developed custom web and mobile applications for startups and SMBs.",
-      "Built SaaS platforms, e-commerce systems, logistics platforms, and CRM solutions.",
-      "Led architecture and technical decision-making.",
-      "Managed deployments and cloud infrastructure.",
-      "Worked directly with clients throughout the project lifecycle.",
-    ],
-    achievements: [
-      "Delivered 20+ successful client projects.",
-      "Built scalable systems serving thousands of users.",
-      "Established long-term client relationships through consistent delivery.",
-    ],
-  },
-  {
-    company: "Unosquare",
-    role: "Full Stack & Mobile Developer",
-    location: "Guadalajara, Jalisco, Mexico",
-    period: "January 2019 - October 2020",
-    technologies: ["React", "React Native", "TypeScript", "Node.js", "Express.js", "PostgreSQL", "Firebase", "AWS"],
-    responsibilities: [
-      "Developed web and mobile applications for enterprise clients.",
-      "Built RESTful APIs and backend services.",
-      "Implemented reusable frontend components using React.",
-      "Developed cross-platform mobile applications using React Native.",
-      "Participated in architecture discussions and code reviews.",
-      "Assisted with cloud deployments and CI/CD pipelines.",
-    ],
-    achievements: [
-      "Successfully delivered multiple production applications.",
-      "Improved engineering productivity through reusable components.",
-      "Contributed to scalable cloud-native solutions.",
-    ],
-  },
-  {
-    company: "Blue People",
-    role: "Junior Web Developer",
-    location: "Mexico City, Mexico",
-    period: "February 2016 - November 2018",
-    technologies: ["HTML", "CSS", "JavaScript", "jQuery", "PHP", "MySQL", "Bootstrap", "Git"],
-    responsibilities: [
-      "Developed responsive websites and internal business applications.",
-      "Implemented frontend interfaces from UI/UX designs.",
-      "Built backend functionality and database integrations.",
-      "Performed maintenance, debugging, and performance optimization.",
-      "Collaborated with project managers, designers, and senior developers.",
-      "Participated in Agile development processes.",
-    ],
-    achievements: [
-      "Delivered multiple web solutions for business clients.",
-      "Improved website performance and maintainability.",
-      "Built a strong foundation in full-stack web development.",
-    ],
-  },
-];
+  timelineSeniorAi,
+  timelineSeniorFullStack,
+  timelineFullStackMobile,
+  timelineJuniorWeb,
+] as TimelineItem[];
 
-export const projects: Project[] = [
-  {
-    title: "Enterprise AI Applications",
-    role: "Senior AI & Full Stack Engineer",
-    company: "Globant",
-    location: "Remote, Mexico",
-    period: "January 2024 - Present",
-    companyUrl: "https://www.globant.com/",
-    description: "Enterprise AI applications using Large Language Models, RAG systems, AI assistants, and OpenAI-based workflow integrations.",
-    stack: ["Python", "FastAPI", "React", "Next.js", "TypeScript", "OpenAI API", "LangChain", "AWS", "Azure", "Kubernetes"],
-    impact: "Delivered production-ready AI-powered business solutions and enterprise knowledge management systems powered by LLMs.",
-    featured: true,
-    imageUrls: ["/assets/projects/globant-ai-pods.png", "/assets/projects/globant-insights.png"],
-    responsibilities: [
-      "Developed enterprise AI applications using Large Language Models.",
-      "Built Retrieval-Augmented Generation (RAG) systems and AI assistants.",
-      "Integrated OpenAI-based solutions into enterprise workflows.",
-      "Designed scalable cloud-native applications.",
-      "Led technical architecture discussions and code reviews.",
-      "Mentored engineering teams on AI adoption and implementation.",
-    ],
-    achievements: [
-      "Delivered production-ready AI-powered business solutions.",
-      "Improved operational efficiency through intelligent automation.",
-      "Built enterprise knowledge management systems powered by LLMs.",
-    ],
-  },
-  {
-    title: "Food Delivery & Super App Platform",
-    role: "Full Stack Developer",
-    company: "Remote",
-    location: "Mexico",
-    period: "May 2025 - July 2025",
-    description: "A modern food delivery and super app platform inspired by large-scale on-demand ecosystems, with restaurant discovery, promotional sections, dynamic content modules, and mobile-first UX.",
-    stack: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Swiper", "Vercel"],
-    impact: "Delivered a production-ready food delivery platform with modern UX standards, reusable frontend architecture, and optimized Lighthouse performance.",
-    links: [{ label: "Web", href: "https://web.didiglobal.com/mx/food", type: "web" }],
-    featured: true,
-    imageUrls: ["/assets/projects/didi-hero.png", "/assets/projects/didi-promos.png", "/assets/projects/didi-cities.png"],
-    responsibilities: [
-      "Designed and implemented scalable frontend architecture using React and Next.js.",
-      "Built reusable UI components and mobile-first interfaces using Tailwind CSS.",
-      "Integrated Swiper-based promotional carousels and interactive content sections.",
-      "Managed deployment pipelines and production hosting using Vercel.",
-    ],
-    achievements: [
-      "Created reusable frontend architecture for future feature development.",
-      "Improved SEO, rendering performance, and page loading speed through Next.js optimization techniques.",
-      "Established scalable development patterns for future platform growth.",
-    ],
-  },
-  {
-    title: "Rappi Consumer Platform",
-    role: "Senior Mobile & Full Stack Engineer",
-    company: "Rappi",
-    location: "Mexico City, Mexico",
-    period: "April 2021 - December 2023",
-    companyUrl: "https://www.rappi.com.mx/",
-    links: [
-      { label: "iOS", href: "https://apps.apple.com/co/app/rappi-pide-todo-en-minutos/id984044296", type: "ios" },
-      { label: "Android", href: "https://play.google.com/store/apps/details?id=com.grability.rappi", type: "android" },
-    ],
-    description: "Large-scale consumer mobile and web platform work across ordering, logistics, React Native initiatives, performance, monitoring, and analytics.",
-    stack: ["React Native", "React", "TypeScript", "Node.js", "GraphQL", "PostgreSQL", "AWS", "Kotlin", "Swift"],
-    impact: "Contributed to applications serving millions of users while improving mobile application performance, stability, and shared component adoption.",
-    featured: true,
-    imageUrls: ["/assets/projects/rappi-restaurants.png", "/assets/projects/rappi-super.png", "/assets/projects/rappi-mobile.png"],
-    responsibilities: [
-      "Developed mobile and web features for large-scale consumer applications.",
-      "Participated in React Native platform initiatives.",
-      "Built backend services supporting logistics and ordering systems.",
-      "Collaborated with distributed engineering teams across Latin America.",
-      "Improved performance, reliability, and maintainability of applications.",
-      "Implemented monitoring and analytics solutions.",
-    ],
-    achievements: [
-      "Contributed to applications serving millions of users.",
-      "Improved mobile application performance and stability.",
-      "Developed reusable components adopted across multiple teams.",
-      "Successfully delivered large-scale product releases.",
-    ],
-  },
-  {
-    title: "Enterprise SaaS Products",
-    role: "Senior Full Stack Engineer",
-    company: "Wizeline",
-    location: "Guadalajara, Mexico",
-    period: "January 2019 - March 2021",
-    companyUrl: "https://www.wizeline.ai/",
-    description: "Enterprise SaaS products for international clients, including scalable frontend and backend architectures, microservices, and cloud-native applications.",
-    stack: ["React", "TypeScript", "Node.js", "GraphQL", "GCP", "Kubernetes", "PostgreSQL"],
-    impact: "Delivered digital transformation projects, improved engineering efficiency through reusable frameworks, and reduced deployment times with CI/CD automation.",
-    imageUrls: ["/assets/projects/wizeline-home.png", "/assets/projects/wizeline-ai.png"],
-    responsibilities: [
-      "Developed enterprise SaaS products for international clients.",
-      "Designed scalable frontend and backend architectures.",
-      "Built microservices and cloud-native applications.",
-      "Mentored junior engineers and conducted code reviews.",
-      "Participated in Agile product development.",
-    ],
-    achievements: [
-      "Delivered multiple digital transformation projects.",
-      "Improved engineering efficiency through reusable frameworks.",
-      "Reduced deployment times using CI/CD automation.",
-    ],
-  },
-  {
-    title: "Enterprise Banking & Retail Solutions",
-    role: "Full Stack Developer",
-    company: "Softtek",
-    location: "Mexico City, Mexico",
-    period: "January 2016 - December 2018",
-    companyUrl: "https://www.softtek.com",
-    description: "Enterprise software solutions for banking and retail clients, including REST APIs, backend services, responsive interfaces, and legacy modernization.",
-    stack: ["Java", "Spring Boot", "AngularJS", "JavaScript", "MySQL", "SQL Server"],
-    impact: "Delivered multiple enterprise projects, improved system performance, and contributed to modernization of legacy applications.",
-    imageUrls: ["/assets/projects/softtek-home.png", "/assets/projects/softtek-experience.png"],
-    responsibilities: [
-      "Developed enterprise software solutions for banking and retail clients.",
-      "Created REST APIs and backend services.",
-      "Built responsive web interfaces.",
-      "Optimized database performance and application reliability.",
-      "Participated in Agile software development teams.",
-    ],
-    achievements: [
-      "Successfully delivered multiple enterprise projects.",
-      "Improved system performance through code optimization.",
-      "Contributed to modernization of legacy applications.",
-    ],
-  },
-];
+export const projects: Project[] = [projectGlobant, projectFoodDelivery, projectRappi, projectWizeline, projectSofttek] as Project[];
 
 export const contactMethods: ContactMethod[] = [
-  {
-    label: "Email",
-    value: profile.email,
-    href: `mailto:${profile.email}`,
-    icon: Mail,
-  },
-  {
-    label: "Telegram",
-    value: profile.telegram,
-    href: "https://t.me/yesteru",
-    icon: FaTelegramPlane,
-  },
-  {
-    label: "WhatsApp",
-    value: profile.whatsapp,
-    href: formatWhatsappLink(profile.whatsapp),
-    icon: FaWhatsapp,
-  },
-  {
-    label: "LinkedIn",
-    value: "Hector Rosales Ortiz",
-    href: profile.linkedin,
-    icon: FaLinkedin,
-  },
-  {
-    label: "Country",
-    value: profile.country,
-    icon: MapPin,
-  },
-];
+  contactEmail,
+  contactTelegram,
+  contactWhatsapp,
+  contactLinkedin,
+  contactCountry,
+].map((item) => hydrateContactMethod(item as RawContactMethod));
 
-export const socialLinks = [
-  { label: "LinkedIn", href: profile.linkedin, icon: FaLinkedin },
-  { label: "GitHub", href: "https://github.com/mernmaster2025", icon: FaGithub },
-  { label: "Global", href: "#projects", icon: Globe2 },
-];
+export const socialLinks: SocialLink[] = [socialLinkedin, socialGithub, socialProjects].map((item) =>
+  hydrateSocialLink(item as RawSocialLink),
+);
 
-export const education = {
-  institution: "Instituto Politecnico Nacional",
-  url: "https://www.ipn.mx/",
-  degree: "Bachelor's Degree",
-  field: "Networking of Computer Systems",
-  period: "2010 - 2015",
-  icon: GraduationCap,
-};
+export const education: Education = hydrateIcon(educationJson as RawIconItem & Omit<Education, "icon">);

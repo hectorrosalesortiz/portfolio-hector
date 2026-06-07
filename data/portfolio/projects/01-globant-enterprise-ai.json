@@ -1,0 +1,26 @@
+{
+  "title": "Enterprise AI Applications",
+  "role": "Senior AI & Full Stack Engineer",
+  "company": "Globant",
+  "location": "Remote, Mexico",
+  "period": "January 2024 - Present",
+  "companyUrl": "https://www.globant.com/",
+  "description": "Enterprise AI applications using Large Language Models, RAG systems, AI assistants, and OpenAI-based workflow integrations.",
+  "stack": ["Python", "FastAPI", "React", "Next.js", "TypeScript", "OpenAI API", "LangChain", "AWS", "Azure", "Kubernetes"],
+  "impact": "Delivered production-ready AI-powered business solutions and enterprise knowledge management systems powered by LLMs.",
+  "featured": true,
+  "imageUrls": ["/assets/projects/globant-ai-pods.png", "/assets/projects/globant-insights.png"],
+  "responsibilities": [
+    "Developed enterprise AI applications using Large Language Models.",
+    "Built Retrieval-Augmented Generation (RAG) systems and AI assistants.",
+    "Integrated OpenAI-based solutions into enterprise workflows.",
+    "Designed scalable cloud-native applications.",
+    "Led technical architecture discussions and code reviews.",
+    "Mentored engineering teams on AI adoption and implementation."
+  ],
+  "achievements": [
+    "Delivered production-ready AI-powered business solutions.",
+    "Improved operational efficiency through intelligent automation.",
+    "Built enterprise knowledge management systems powered by LLMs."
+  ]
+}

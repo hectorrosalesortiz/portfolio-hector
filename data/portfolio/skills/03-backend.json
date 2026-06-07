@@ -1,0 +1,7 @@
+{
+  "title": "Backend",
+  "description": "Secure, scalable APIs and services for enterprise-grade systems.",
+  "level": 92,
+  "icon": "SiNodedotjs",
+  "skills": ["Python", "FastAPI", "Django", "Node.js", "NestJS", "Spring Boot", "GraphQL", "REST APIs"]
+}

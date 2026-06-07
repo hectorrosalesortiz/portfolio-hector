@@ -1,0 +1,20 @@
+{
+  "company": "Unosquare",
+  "role": "Full Stack & Mobile Developer",
+  "location": "Guadalajara, Jalisco, Mexico",
+  "period": "January 2019 - October 2020",
+  "technologies": ["React", "React Native", "TypeScript", "Node.js", "Express.js", "PostgreSQL", "Firebase", "AWS"],
+  "responsibilities": [
+    "Developed web and mobile applications for enterprise clients.",
+    "Built RESTful APIs and backend services.",
+    "Implemented reusable frontend components using React.",
+    "Developed cross-platform mobile applications using React Native.",
+    "Participated in architecture discussions and code reviews.",
+    "Assisted with cloud deployments and CI/CD pipelines."
+  ],
+  "achievements": [
+    "Successfully delivered multiple production applications.",
+    "Improved engineering productivity through reusable components.",
+    "Contributed to scalable cloud-native solutions."
+  ]
+}

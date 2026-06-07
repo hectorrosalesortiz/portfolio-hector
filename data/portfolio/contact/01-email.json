@@ -1,0 +1,6 @@
+{
+  "label": "Email",
+  "valueFromProfile": "email",
+  "hrefFromProfile": "email",
+  "icon": "Mail"
+}

@@ -1,0 +1,31 @@
+{
+  "company": "Freelance",
+  "role": "Senior Full Stack Developer",
+  "location": "Remote",
+  "period": "November 2020 - December 2023",
+  "technologies": [
+    "React",
+    "Next.js",
+    "React Native",
+    "Node.js",
+    "NestJS",
+    "TypeScript",
+    "GraphQL",
+    "PostgreSQL",
+    "MongoDB",
+    "AWS",
+    "Docker"
+  ],
+  "responsibilities": [
+    "Designed and developed custom web and mobile applications for startups and SMBs.",
+    "Built SaaS platforms, e-commerce systems, logistics platforms, and CRM solutions.",
+    "Led architecture and technical decision-making.",
+    "Managed deployments and cloud infrastructure.",
+    "Worked directly with clients throughout the project lifecycle."
+  ],
+  "achievements": [
+    "Delivered 20+ successful client projects.",
+    "Built scalable systems serving thousands of users.",
+    "Established long-term client relationships through consistent delivery."
+  ]
+}

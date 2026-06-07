@@ -1,0 +1,5 @@
+{
+  "title": "Cloud Architecture",
+  "description": "Scalable platforms across AWS, Azure, and GCP with containerized workloads and CI/CD automation.",
+  "icon": "CloudCog"
+}

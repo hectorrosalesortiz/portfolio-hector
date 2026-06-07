@@ -2,9 +2,26 @@ import type { ComponentType } from "react";
 
 export type PortfolioIcon = ComponentType<{ className?: string }>;
 
+export type Profile = {
+  name: string;
+  title: string;
+  subtitle: string;
+  email: string;
+  telegram: string;
+  whatsapp: string;
+  linkedin: string;
+  country: string;
+};
+
 export type Stat = {
   value: string;
   label: string;
+};
+
+export type Capability = {
+  title: string;
+  description: string;
+  icon: PortfolioIcon;
 };
 
 export type TimelineItem = {
@@ -59,5 +76,20 @@ export type ContactMethod = {
   label: string;
   value: string;
   href?: string;
+  icon: PortfolioIcon;
+};
+
+export type SocialLink = {
+  label: string;
+  href: string;
+  icon: PortfolioIcon;
+};
+
+export type Education = {
+  institution: string;
+  url: string;
+  degree: string;
+  field: string;
+  period: string;
   icon: PortfolioIcon;
 };

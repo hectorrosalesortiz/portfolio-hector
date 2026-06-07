@@ -1,0 +1,35 @@
+{
+  "company": "Freelance",
+  "role": "Senior AI & Full Stack Engineer",
+  "location": "Remote",
+  "period": "January 2024 - Present",
+  "technologies": [
+    "Python",
+    "FastAPI",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "OpenAI API",
+    "LangChain",
+    "LangGraph",
+    "LlamaIndex",
+    "Pinecone",
+    "AWS",
+    "Azure",
+    "Docker",
+    "Kubernetes"
+  ],
+  "responsibilities": [
+    "Developed AI-powered applications and enterprise automation platforms.",
+    "Built RAG systems, AI assistants, and multi-agent workflows.",
+    "Integrated LLM technologies into existing business systems.",
+    "Designed cloud-native AI infrastructure and deployment pipelines.",
+    "Consulted clients on AI strategy and implementation."
+  ],
+  "achievements": [
+    "Delivered production-ready AI business solutions.",
+    "Built enterprise knowledge management and search systems.",
+    "Reduced operational costs through intelligent automation.",
+    "Successfully launched AI-powered SaaS products."
+  ]
+}

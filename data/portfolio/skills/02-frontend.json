@@ -1,0 +1,7 @@
+{
+  "title": "Frontend",
+  "description": "Premium interfaces with strong accessibility, animation, and product polish.",
+  "level": 95,
+  "icon": "SiReact",
+  "skills": ["TypeScript", "React", "Next.js", "Angular", "Tailwind", "Material UI", "PHP", "Laravel"]
+}

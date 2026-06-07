@@ -1,0 +1,20 @@
+{
+  "company": "Blue People",
+  "role": "Junior Web Developer",
+  "location": "Mexico City, Mexico",
+  "period": "February 2016 - November 2018",
+  "technologies": ["HTML", "CSS", "JavaScript", "jQuery", "PHP", "MySQL", "Bootstrap", "Git"],
+  "responsibilities": [
+    "Developed responsive websites and internal business applications.",
+    "Implemented frontend interfaces from UI/UX designs.",
+    "Built backend functionality and database integrations.",
+    "Performed maintenance, debugging, and performance optimization.",
+    "Collaborated with project managers, designers, and senior developers.",
+    "Participated in Agile development processes."
+  ],
+  "achievements": [
+    "Delivered multiple web solutions for business clients.",
+    "Improved website performance and maintainability.",
+    "Built a strong foundation in full-stack web development."
+  ]
+}

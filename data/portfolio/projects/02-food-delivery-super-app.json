@@ -1,0 +1,24 @@
+{
+  "title": "Food Delivery & Super App Platform",
+  "role": "Full Stack Developer",
+  "company": "Remote",
+  "location": "Mexico",
+  "period": "May 2025 - July 2025",
+  "description": "A modern food delivery and super app platform inspired by large-scale on-demand ecosystems, with restaurant discovery, promotional sections, dynamic content modules, and mobile-first UX.",
+  "stack": ["React", "Next.js", "Tailwind CSS", "TypeScript", "Swiper", "Vercel"],
+  "impact": "Delivered a production-ready food delivery platform with modern UX standards, reusable frontend architecture, and optimized Lighthouse performance.",
+  "links": [{ "label": "Web", "href": "https://web.didiglobal.com/mx/food", "type": "web" }],
+  "featured": true,
+  "imageUrls": ["/assets/projects/didi-hero.png", "/assets/projects/didi-promos.png", "/assets/projects/didi-cities.png"],
+  "responsibilities": [
+    "Designed and implemented scalable frontend architecture using React and Next.js.",
+    "Built reusable UI components and mobile-first interfaces using Tailwind CSS.",
+    "Integrated Swiper-based promotional carousels and interactive content sections.",
+    "Managed deployment pipelines and production hosting using Vercel."
+  ],
+  "achievements": [
+    "Created reusable frontend architecture for future feature development.",
+    "Improved SEO, rendering performance, and page loading speed through Next.js optimization techniques.",
+    "Established scalable development patterns for future platform growth."
+  ]
+}

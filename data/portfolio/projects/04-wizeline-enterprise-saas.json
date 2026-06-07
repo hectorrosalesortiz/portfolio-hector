@@ -1,0 +1,24 @@
+{
+  "title": "Enterprise SaaS Products",
+  "role": "Senior Full Stack Engineer",
+  "company": "Wizeline",
+  "location": "Guadalajara, Mexico",
+  "period": "January 2019 - March 2021",
+  "companyUrl": "https://www.wizeline.ai/",
+  "description": "Enterprise SaaS products for international clients, including scalable frontend and backend architectures, microservices, and cloud-native applications.",
+  "stack": ["React", "TypeScript", "Node.js", "GraphQL", "GCP", "Kubernetes", "PostgreSQL"],
+  "impact": "Delivered digital transformation projects, improved engineering efficiency through reusable frameworks, and reduced deployment times with CI/CD automation.",
+  "imageUrls": ["/assets/projects/wizeline-home.png", "/assets/projects/wizeline-ai.png"],
+  "responsibilities": [
+    "Developed enterprise SaaS products for international clients.",
+    "Designed scalable frontend and backend architectures.",
+    "Built microservices and cloud-native applications.",
+    "Mentored junior engineers and conducted code reviews.",
+    "Participated in Agile product development."
+  ],
+  "achievements": [
+    "Delivered multiple digital transformation projects.",
+    "Improved engineering efficiency through reusable frameworks.",
+    "Reduced deployment times using CI/CD automation."
+  ]
+}
