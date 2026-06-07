@@ -11,6 +11,7 @@ export type Profile = {
   whatsapp: string;
   linkedin: string;
   country: string;
+  address: string;
 };
 
 export type Stat = {
