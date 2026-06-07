@@ -96,9 +96,9 @@ export function SkillsSection() {
 
                   <p className="mt-4 text-sm leading-6 text-muted-foreground">{category.description}</p>
 
-                  <div className="mt-6 h-2 overflow-hidden rounded-full bg-white/10 light:bg-slate-200">
+                  <div className="mt-6 h-2 overflow-hidden rounded-full bg-white/10 shadow-inner light:bg-slate-200">
                     <motion.div
-                      className="h-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent"
+                      className="h-full rounded-full bg-amber-300/90 shadow-[0_0_16px_rgba(251,191,36,0.28)] light:bg-amber-600/85 light:shadow-[0_0_12px_rgba(217,119,6,0.18)]"
                       initial={{ width: 0 }}
                       whileInView={{ width: `${category.level}%` }}
                       viewport={{ once: true }}

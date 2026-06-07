@@ -3,6 +3,7 @@
 import Switch from "@mui/material/Switch";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
+import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/components/providers/app-providers";
 import { Button } from "@/components/ui/button";
@@ -54,13 +55,15 @@ export function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-4 z-50 px-4">
       <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-background/65 px-4 py-3 shadow-2xl shadow-black/20 backdrop-blur-2xl light:border-slate-200 light:bg-white/75">
-        <a href="#home" className="flex items-center gap-3" aria-label="Go to home" onClick={() => handleNavClick("#home")}>
-          <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-primary via-secondary to-accent font-space text-sm font-black text-white shadow-glow">
-            HR
-          </span>
-          <span className="hidden font-sora text-sm font-semibold tracking-wide text-foreground sm:block">
-            Hector Rosales Ortiz
-          </span>
+        <a href="#home" className="flex shrink-0 items-center" aria-label="Go to home" onClick={() => handleNavClick("#home")}>
+          <Image
+            src="/assets/logo-0.png"
+            alt="Hector Rosales Ortiz"
+            width={220}
+            height={60}
+            priority
+            className="h-10 w-auto object-contain"
+          />
         </a>
 
         <div className="hidden items-center gap-1 lg:flex">
@@ -70,14 +73,14 @@ export function SiteHeader() {
               href={item.href}
               className={cn(
                 "relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition hover:text-foreground",
-                activeSection === item.href ? "text-white light:text-slate-950" : "text-muted-foreground",
+                activeSection === item.href ? "text-foreground" : "text-muted-foreground",
               )}
               onClick={() => handleNavClick(item.href)}
             >
               {activeSection === item.href ? (
                 <motion.span
                   layoutId="active-nav-pill"
-                  className="absolute inset-0 z-0 rounded-full border border-white/15 bg-gradient-to-r from-primary/85 via-secondary/65 to-accent/80 shadow-glow light:border-slate-950/10 light:from-teal-100 light:via-violet-100 light:to-amber-100"
+                  className="absolute inset-0 z-0 rounded-full border border-white/10 bg-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl light:border-slate-950/10 light:bg-white light:shadow-[0_8px_20px_rgba(15,23,42,0.12),inset_0_1px_0_rgba(255,255,255,0.9)]"
                   transition={{ type: "spring", stiffness: 420, damping: 34 }}
                 />
               ) : null}
@@ -125,14 +128,14 @@ export function SiteHeader() {
                 href={item.href}
                 className={cn(
                   "relative block overflow-hidden rounded-2xl px-4 py-3 text-sm font-semibold hover:text-foreground",
-                  activeSection === item.href ? "text-white light:text-slate-950" : "text-muted-foreground",
+                  activeSection === item.href ? "text-foreground" : "text-muted-foreground",
                 )}
                 onClick={() => handleNavClick(item.href)}
               >
                 {activeSection === item.href ? (
                   <motion.span
                     layoutId="active-mobile-nav-pill"
-                    className="absolute inset-0 z-0 rounded-2xl border border-white/15 bg-gradient-to-r from-primary/85 via-secondary/65 to-accent/80 shadow-glow light:border-slate-950/10 light:from-teal-100 light:via-violet-100 light:to-amber-100"
+                    className="absolute inset-0 z-0 rounded-2xl border border-white/10 bg-white/10 shadow-[0_8px_24px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.2)] backdrop-blur-xl light:border-slate-950/10 light:bg-white light:shadow-[0_8px_20px_rgba(15,23,42,0.12),inset_0_1px_0_rgba(255,255,255,0.9)]"
                     transition={{ type: "spring", stiffness: 420, damping: 34 }}
                   />
                 ) : null}

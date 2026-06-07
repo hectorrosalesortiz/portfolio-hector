@@ -105,7 +105,7 @@ export function ProjectsSection() {
         <div className="grid gap-6 lg:grid-cols-2">
           {filteredProjects.map((project, index) => (
             <Reveal key={project.title} delay={index * 0.08}>
-              <div className="h-[32.5rem] [perspective:1600px]">
+              <div className="h-[33rem] [perspective:1600px]">
                 <motion.article
                   className="relative h-full cursor-pointer [transform-style:preserve-3d]"
                   animate={{ rotateY: flippedProject === project.title ? 180 : 0 }}
@@ -166,7 +166,7 @@ export function ProjectsSection() {
                       </div>
                     ) : null}
 
-                    <div className="p-5 pb-4">
+                    <div className="p-5 pb-5">
                       <div className="flex items-start justify-between gap-4">
                         <div>
                           <h3 className="font-sora text-2xl font-semibold">{project.company ?? project.title}</h3>

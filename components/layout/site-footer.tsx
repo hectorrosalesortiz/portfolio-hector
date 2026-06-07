@@ -2,17 +2,21 @@
 
 import { ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { socialLinks } from "@/lib/portfolio-data";
 
 export function SiteFooter() {
   return (
     <footer className="relative border-t border-white/10 px-4 py-10 light:border-slate-200">
       <div className="container flex flex-col items-center justify-between gap-6 md:flex-row">
-        <div>
-          <p className="font-sora text-lg font-semibold">Hector Rosales Ortiz</p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Senior AI & Full Stack Engineer. Built for enterprise-grade digital products.
-          </p>
+        <div className="text-center md:text-left">
+          <Image
+            src="/assets/logo-0.png"
+            alt="Hector Rosales Ortiz"
+            width={260}
+            height={70}
+            className="mx-auto h-14 w-auto object-contain md:mx-0"
+          />
         </div>
 
         <div className="flex items-center gap-3">
