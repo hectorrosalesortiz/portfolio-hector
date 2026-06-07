@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Sora, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { AppProviders } from "@/components/providers/app-providers";
-import { CustomCursor } from "@/components/system/custom-cursor";
 import { LoadingScreen } from "@/components/system/loading-screen";
 import { ScrollProgress } from "@/components/system/scroll-progress";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -98,7 +97,6 @@ export default function RootLayout({
           />
           <LoadingScreen />
           <ScrollProgress />
-          <CustomCursor />
           <div className="noise-overlay" />
           <SiteHeader />
           {children}

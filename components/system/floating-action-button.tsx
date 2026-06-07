@@ -176,7 +176,7 @@ export function FloatingActionButton() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-24 z-50">
       <AnimatePresence>
         {open ? (
           <motion.div
@@ -184,7 +184,7 @@ export function FloatingActionButton() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.96 }}
             transition={{ duration: 0.25 }}
-            className="mb-4 flex h-[34rem] w-[calc(100vw-2rem)] max-w-sm flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-background/95 shadow-2xl shadow-black/30 backdrop-blur-2xl light:border-slate-200 light:bg-white/95"
+            className="mb-4 flex h-[34rem] w-[calc(100vw-7rem)] max-w-sm flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-background/95 shadow-2xl shadow-black/30 backdrop-blur-2xl light:border-slate-200 light:bg-white/95 sm:w-[calc(100vw-2rem)]"
           >
             <div className="flex items-center justify-between border-b border-white/10 p-4 light:border-slate-200">
               <div className="flex items-center gap-3">
