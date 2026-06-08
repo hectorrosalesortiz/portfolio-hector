@@ -80,6 +80,15 @@ export type ContactMethod = {
   icon: PortfolioIcon;
 };
 
+export type Certification = {
+  title: string;
+  provider: string;
+  href: string;
+  iframeUrl: string;
+  imageUrl: string;
+  category: string;
+};
+
 export type SocialLink = {
   label: string;
   href: string;

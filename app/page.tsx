@@ -1,4 +1,5 @@
 import { AboutSection } from "@/components/sections/about-section";
+import { CertificationsSection } from "@/components/sections/certifications-section";
 import { ContactSection } from "@/components/sections/contact-section";
 import { EducationSection } from "@/components/sections/education-section";
 import { ExperienceSection } from "@/components/sections/experience-section";
@@ -18,6 +19,7 @@ export default function Home() {
       <SkillsSection />
       <ExperienceSection />
       <ProjectsSection />
+      <CertificationsSection />
       <EducationSection />
       <ContactSection />
       <FloatingActionButton />

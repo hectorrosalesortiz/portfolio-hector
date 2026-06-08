@@ -14,6 +14,7 @@ import educationJson from "@/data/portfolio/education.json";
 import profileJson from "@/data/portfolio/profile.json";
 import type {
   Capability,
+  Certification,
   ContactMethod,
   Education,
   PortfolioIcon,
@@ -140,6 +141,10 @@ export const stats: Stat[] = loadJsonContext<Stat>(
 export const capabilities: Capability[] = loadJsonContext<RawIconItem & Omit<Capability, "icon">>(
   (require as WebpackRequire).context<RawIconItem & Omit<Capability, "icon">>("../data/portfolio/capabilities", false, /\.json$/),
 ).map((item) => hydrateIcon(item));
+
+export const certifications: Certification[] = loadJsonContext<Certification>(
+  (require as WebpackRequire).context<Certification>("../data/portfolio/certifications", false, /\.json$/),
+);
 
 export const skillCategories: SkillCategory[] = loadJsonContext<RawIconItem & Omit<SkillCategory, "icon">>(
   (require as WebpackRequire).context<RawIconItem & Omit<SkillCategory, "icon">>("../data/portfolio/skills", false, /\.json$/),
