@@ -1,0 +1,49 @@
+{
+  "title": "Swiss Wealth Protection Platform",
+  "role": "Mobile & Nuxt.js Engineer",
+  "company": "Golden Suisse",
+  "location": "Switzerland",
+  "period": "December 2022 - January 2024",
+  "description": "Swiss wealth protection platform with gold and silver vaulting, global payments, native mobile banking features, and a Nuxt.js web platform for wealth management.",
+  "stack": [
+    "React Native",
+    "Swift",
+    "Objective-C",
+    "Java",
+    "Kotlin",
+    "Nuxt.js",
+    "Vue.js",
+    "TypeScript",
+    "JavaScript",
+    "Secure Authentication",
+    "Payment Processing",
+    "Multi-currency",
+    "Real-time Sync",
+    "Banking APIs",
+    "iOS",
+    "Android"
+  ],
+  "impact": "Built secure native mobile and Nuxt.js web experiences for wealth protection, vaulting, global payments, multi-currency workflows, and real-time financial data synchronization.",
+  "links": [
+    { "label": "Web", "href": "https://www.goldensuisse.com/", "type": "web" },
+    { "label": "iOS", "href": "https://apps.apple.com/us/app/golden-suisse/id1236821991", "type": "ios" },
+    { "label": "Android", "href": "https://play.google.com/store/apps/details?id=com.golden.coin", "type": "android" }
+  ],
+  "featured": true,
+  "imageUrls": [
+    "/assets/projects/golden-suisse-web.png",
+    "/assets/projects/golden-suisse-mobile.png"
+  ],
+  "responsibilities": [
+    "Developed native mobile application features with secure banking workflows, payment processing, and account management.",
+    "Built Nuxt.js and Vue.js web platform features for wealth management dashboards and transaction systems.",
+    "Implemented secure authentication flows for financial account access.",
+    "Supported multi-currency functionality and global payment workflows.",
+    "Integrated banking APIs and real-time financial data synchronization across mobile and web experiences."
+  ],
+  "achievements": [
+    "Delivered secure wealth management experiences for gold and silver vaulting workflows.",
+    "Built cross-platform financial product features spanning native mobile and Nuxt.js web interfaces.",
+    "Improved account, transaction, and payment visibility through real-time synchronized financial data."
+  ]
+}

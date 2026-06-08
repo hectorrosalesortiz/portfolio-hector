@@ -4,7 +4,6 @@
   "company": "Expensify",
   "location": "USA",
   "period": "September 2021 - December 2022",
-  "companyUrl": "https://new.expensify.com/",
   "description": "Large open-source React Native expense management platform where I contributed bug fixes and improvements across UI, functionality, Markdown rendering, and mobile app workflows.",
   "stack": [
     "React Native",

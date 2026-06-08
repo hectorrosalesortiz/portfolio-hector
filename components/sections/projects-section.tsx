@@ -204,9 +204,6 @@ export function ProjectsSection() {
                       </div>
 
                       <div className="mt-4 flex flex-wrap gap-2" onClick={(event) => event.stopPropagation()}>
-                        {project.companyUrl ? (
-                          <ProjectActionLink href={project.companyUrl} label={`${project.company} web`} type="web" />
-                        ) : null}
                         {project.links?.map((link) => (
                           <ProjectActionLink key={link.href} href={link.href} label={link.label} type={link.type} />
                         ))}

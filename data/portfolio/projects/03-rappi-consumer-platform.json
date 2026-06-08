@@ -1,31 +1,31 @@
 {
   "title": "Rappi Consumer Platform",
-  "role": "Senior Mobile & Full Stack Engineer",
+  "role": "Senior Native Mobile Engineer",
   "company": "Rappi",
   "location": "Mexico City, Mexico",
   "period": "April 2021 - December 2023",
-  "companyUrl": "https://www.rappi.com.mx/",
   "links": [
+    { "label": "Web", "href": "https://www.rappi.com.mx/", "type": "web" },
     { "label": "iOS", "href": "https://apps.apple.com/co/app/rappi-pide-todo-en-minutos/id984044296", "type": "ios" },
     { "label": "Android", "href": "https://play.google.com/store/apps/details?id=com.grability.rappi", "type": "android" }
   ],
-  "description": "Large-scale consumer mobile and web platform work across ordering, logistics, React Native initiatives, performance, monitoring, and analytics.",
-  "stack": ["React Native", "React", "TypeScript", "Node.js", "GraphQL", "PostgreSQL", "AWS", "Kotlin", "Swift"],
-  "impact": "Contributed to applications serving millions of users while improving mobile application performance, stability, and shared component adoption.",
+  "description": "Large-scale native iOS and Android consumer platform work across ordering, logistics, mobile performance, monitoring, and analytics in a massive enterprise mobile codebase.",
+  "stack": ["Swift", "SwiftUI", "Objective-C", "Java", "Kotlin", "iOS", "Android", "Native Mobile", "Performance Optimization", "Analytics"],
+  "impact": "Contributed to native mobile applications serving millions of users while working with a 100+ member engineering organization and a source codebase larger than 10 GB.",
   "featured": true,
   "imageUrls": ["/assets/projects/rappi-restaurants.png", "/assets/projects/rappi-super.png", "/assets/projects/rappi-mobile.png"],
   "responsibilities": [
-    "Developed mobile and web features for large-scale consumer applications.",
-    "Participated in React Native platform initiatives.",
-    "Built backend services supporting logistics and ordering systems.",
-    "Collaborated with distributed engineering teams across Latin America.",
-    "Improved performance, reliability, and maintainability of applications.",
-    "Implemented monitoring and analytics solutions."
+    "Developed native iOS and Android features for large-scale consumer applications.",
+    "Worked across Swift, SwiftUI, Objective-C, Java, and Kotlin codebases.",
+    "Collaborated with a 100+ member engineering organization across product, design, QA, and platform teams.",
+    "Navigated and maintained a source codebase larger than 10 GB.",
+    "Improved native mobile performance, reliability, and maintainability.",
+    "Implemented monitoring and analytics solutions for mobile product behavior."
   ],
   "achievements": [
     "Contributed to applications serving millions of users.",
-    "Improved mobile application performance and stability.",
-    "Developed reusable components adopted across multiple teams.",
-    "Successfully delivered large-scale product releases."
+    "Improved native mobile application performance and stability.",
+    "Supported large-scale releases across iOS and Android platforms.",
+    "Collaborated effectively within a large engineering team and complex enterprise codebase."
   ]
 }

@@ -4,10 +4,10 @@
   "company": "Softtek",
   "location": "Mexico City, Mexico",
   "period": "January 2016 - December 2018",
-  "companyUrl": "https://www.softtek.com",
   "description": "Enterprise software solutions for banking and retail clients, including REST APIs, backend services, responsive interfaces, and legacy modernization.",
   "stack": ["Java", "Spring Boot", "AngularJS", "JavaScript", "MySQL", "SQL Server"],
   "impact": "Delivered multiple enterprise projects, improved system performance, and contributed to modernization of legacy applications.",
+  "links": [{ "label": "Web", "href": "https://www.softtek.com", "type": "web" }],
   "imageUrls": ["/assets/projects/softtek-home.png", "/assets/projects/softtek-experience.png"],
   "responsibilities": [
     "Developed enterprise software solutions for banking and retail clients.",

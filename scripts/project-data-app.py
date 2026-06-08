@@ -341,7 +341,7 @@ FIELDS = [
     Field("company", "Company"),
     Field("role", "Role"),
     Field("location", "Location"),
-    Field("companyUrl", "Company URL"),
+    Field("webUrl", "Web URL"),
     Field("description", "Description", multiline=True, required=True),
     Field("impact", "Impact", multiline=True, required=True),
     Field("links", "Links", multiline=True, hint="One per line: Label | URL | web/ios/android/company/reference"),
@@ -675,11 +675,22 @@ class ProjectDataApp:
         self.status_var.set(f"Editing {path.name}.")
 
     def populate_form(self, project: dict[str, object]) -> None:
+        links = project.get("links", [])
+
         for field in FIELDS:
             value = project.get(field.key, "")
 
             if field.key == "links":
                 value = format_links(value)
+            elif field.key == "webUrl":
+                value = next(
+                    (
+                        str(link.get("href", ""))
+                        for link in links
+                        if isinstance(link, dict) and link.get("type") == "web"
+                    ),
+                    str(project.get("companyUrl", "")),
+                )
             elif field.key == "slug":
                 value = ""
             else:
@@ -711,6 +722,15 @@ class ProjectDataApp:
         if key in self.text_widgets:
             return self.text_widgets[key].get("1.0", tk.END).strip()
         return self.entry_vars[key].get().strip()
+
+    def create_links_payload(self) -> list[dict[str, str]]:
+        links = parse_links(self.get_field_value("links"))
+        web_url = self.get_field_value("webUrl")
+
+        if web_url and not any(link.get("href") == web_url for link in links):
+            links.insert(0, {"label": "Web", "href": web_url, "type": "web"})
+
+        return links
 
     def clear_form(self) -> None:
         for field in FIELDS:
@@ -751,11 +771,10 @@ class ProjectDataApp:
             "company": self.get_field_value("company"),
             "location": self.get_field_value("location"),
             "period": build_period(self.start_period_var.get(), self.end_period_var.get(), self.present_var.get()),
-            "companyUrl": self.get_field_value("companyUrl"),
             "description": description,
             "stack": stack,
             "impact": impact,
-            "links": parse_links(self.get_field_value("links")),
+            "links": self.create_links_payload(),
             "demoUrl": self.get_field_value("demoUrl"),
             "githubUrl": self.get_field_value("githubUrl"),
             "featured": self.featured_var.get(),
