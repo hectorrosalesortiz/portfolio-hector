@@ -1,0 +1,36 @@
+{
+  "title": "Cryptocurrency Collective Token",
+  "role": "Blockchain / Smart Contract Developer",
+  "company": "HUH Social",
+  "period": "November 2021 - February 2022",
+  "description": "Cryptocurrency collective token on BSC with reflection rewards, BNB redistribution, an ABC referral system, LP acquisition mechanics, and presale/community engagement flows.",
+  "stack": [
+    "Solidity",
+    "Blockchain",
+    "BSC",
+    "Smart Contracts",
+    "Token Development",
+    "DeFi",
+    "Reflection Token",
+    "Web3",
+    "Next.js",
+    "WordPress"
+  ],
+  "impact": "Built token mechanics and supporting web flows for a BSC cryptocurrency project, including holder rewards, transfer redistribution, referral incentives, liquidity acquisition, and presale engagement.",
+  "links": [{ "label": "Web", "href": "https://www.huh.social/", "type": "web" }],
+  "featured": true,
+  "imageUrls": ["/assets/projects/huh-social-web.png"],
+  "responsibilities": [
+    "Developed Solidity smart contracts for a cryptocurrency token on Binance Smart Chain.",
+    "Implemented static reflection rewards for token holders.",
+    "Built BNB redistribution logic on transfers.",
+    "Implemented an ABC referral system with multi-level reward mechanics.",
+    "Added LP acquisition mechanisms and reduced referral sell tax behavior.",
+    "Built a WordPress site for presale participation and community engagement."
+  ],
+  "achievements": [
+    "Delivered core tokenomics for a BSC-based collective cryptocurrency token.",
+    "Implemented reward mechanics across holder reflections, BNB redistribution, and referral incentives.",
+    "Supported presale and community growth through smart-contract and web platform delivery."
+  ]
+}

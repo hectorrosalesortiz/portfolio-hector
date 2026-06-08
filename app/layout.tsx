@@ -35,6 +35,13 @@ export const metadata: Metadata = {
   },
   description: profile.subtitle,
   applicationName: "Hector Rosales Ortiz Portfolio",
+  icons: {
+    icon: [
+      { url: "/assets/hr-icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/assets/hr-icon.svg",
+    apple: "/assets/hr-icon.svg",
+  },
   keywords: [
     "Senior AI Engineer",
     "Full Stack Engineer",
