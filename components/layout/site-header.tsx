@@ -2,7 +2,7 @@
 
 import Switch from "@mui/material/Switch";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Gamepad2, Menu, Moon, Sun, X } from "lucide-react";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/components/providers/app-providers";
@@ -52,6 +52,11 @@ export function SiteHeader() {
     setMode(isLight ? "dark" : "light");
   }
 
+  function handlePlayGameClick() {
+    setOpen(false);
+    window.dispatchEvent(new CustomEvent("portfolio:open-mini-games"));
+  }
+
   return (
     <header className="fixed inset-x-0 top-4 z-50 px-4">
       <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 bg-background/65 px-4 py-3 shadow-2xl shadow-black/20 backdrop-blur-2xl light:border-slate-200 light:bg-white/75">
@@ -99,8 +104,9 @@ export function SiteHeader() {
               slotProps={{ input: { "aria-label": "Toggle light mode" } }}
             />
           </div>
-          <Button href="#contact" size="sm" className="hidden md:inline-flex" onClick={() => handleNavClick("#contact")}>
-            Contact
+          <Button size="sm" className="hidden md:inline-flex" onClick={handlePlayGameClick}>
+            <Gamepad2 className="h-4 w-4" />
+            Play Game
           </Button>
           <button
             type="button"
@@ -142,6 +148,14 @@ export function SiteHeader() {
                 <span className="relative z-10">{item.label}</span>
               </a>
             ))}
+            <button
+              type="button"
+              className="mt-2 flex w-full items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold text-muted-foreground hover:bg-white/10 hover:text-foreground"
+              onClick={handlePlayGameClick}
+            >
+              Play Game
+              <Gamepad2 className="h-4 w-4" />
+            </button>
             <button
               type="button"
               className="mt-2 flex w-full items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold text-muted-foreground hover:bg-white/10 hover:text-foreground"

@@ -1,6 +1,6 @@
 "use client";
 
-import { Award, Brain, Flame, Gem, RotateCcw, Shield, Sparkles } from "lucide-react";
+import { Award, Brain, Flame, Gem, RotateCcw, Shield } from "lucide-react";
 import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -12,12 +12,11 @@ type Cell = {
 };
 
 const difficulties = [
-  { id: "rookie", label: "Rookie", rows: 8, cols: 8, mines: 8, icon: Shield },
-  { id: "easy", label: "Easy", rows: 9, cols: 9, mines: 12, icon: Sparkles },
-  { id: "medium", label: "Medium", rows: 10, cols: 10, mines: 18, icon: Award },
-  { id: "hard", label: "Hard", rows: 12, cols: 12, mines: 30, icon: Flame },
-  { id: "expert", label: "Expert", rows: 14, cols: 14, mines: 45, icon: Gem },
-  { id: "genius", label: "Genius", rows: 16, cols: 16, mines: 60, icon: Brain },
+  { id: "bronze", label: "Bronze", rows: 8, cols: 8, mines: 8, icon: Shield },
+  { id: "silver", label: "Silver", rows: 10, cols: 10, mines: 18, icon: Award },
+  { id: "gold", label: "Gold", rows: 12, cols: 12, mines: 30, icon: Flame },
+  { id: "platinum", label: "Platinum", rows: 14, cols: 14, mines: 45, icon: Gem },
+  { id: "diamond", label: "Diamond", rows: 16, cols: 16, mines: 60, icon: Brain },
 ] as const;
 
 type Difficulty = (typeof difficulties)[number]["id"];
@@ -132,7 +131,7 @@ function FlagIcon() {
 }
 
 export function MinesweeperGame() {
-  const [difficulty, setDifficulty] = useState<Difficulty>("rookie");
+  const [difficulty, setDifficulty] = useState<Difficulty>("bronze");
   const selectedDifficulty = difficulties.find((item) => item.id === difficulty) ?? difficulties[0];
   const [board, setBoard] = useState(() => createEmptyBoard(selectedDifficulty.rows, selectedDifficulty.cols));
   const [started, setStarted] = useState(false);
@@ -285,7 +284,7 @@ export function MinesweeperGame() {
                   key={level.id}
                   type="button"
                   className={cn(
-                    "inline-flex items-center justify-between gap-2 rounded-full border px-3 py-1.5 text-left text-sm font-semibold transition",
+                    "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-left text-sm font-semibold transition",
                     difficulty === level.id
                       ? "border-amber-300/40 bg-amber-300/10 text-amber-200 light:text-amber-700"
                       : "border-white/10 bg-white/5 text-muted-foreground hover:text-foreground light:border-slate-200 light:bg-slate-900/5",
@@ -296,16 +295,11 @@ export function MinesweeperGame() {
                     <LevelIcon className="h-4 w-4 shrink-0" />
                     {level.label}
                   </span>
-                  <span className="text-[0.65rem] text-muted-foreground">
-                    {level.rows}x{level.cols} / {level.mines}
-                  </span>
                 </button>
               );
             })}
           </div>
         </div>
-
-        <p className="mt-3 text-xs leading-5 text-muted-foreground">Left click to reveal. Right click to flag a mine.</p>
       </aside>
     </>
   );

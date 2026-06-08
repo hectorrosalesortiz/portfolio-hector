@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Bomb, Crown, Gamepad2, Grid3X3, Hash, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChessGame } from "@/components/system/mini-games/chess-game";
 import { Game2048 } from "@/components/system/mini-games/game-2048";
 import { MinesweeperGame } from "@/components/system/mini-games/minesweeper-game";
@@ -19,6 +19,16 @@ const miniGames = [
 export function MiniGamesButton() {
   const [open, setOpen] = useState(false);
   const [activeGame, setActiveGame] = useState<(typeof miniGames)[number]["id"]>("chess");
+
+  useEffect(() => {
+    function handleOpenMiniGames() {
+      setOpen(true);
+    }
+
+    window.addEventListener("portfolio:open-mini-games", handleOpenMiniGames);
+
+    return () => window.removeEventListener("portfolio:open-mini-games", handleOpenMiniGames);
+  }, []);
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
