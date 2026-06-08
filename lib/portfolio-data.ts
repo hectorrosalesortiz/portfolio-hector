@@ -10,38 +10,8 @@ import {
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
 import { SiFlutter, SiKubernetes, SiNodedotjs, SiOpenai, SiReact } from "react-icons/si";
-import capabilityAiProductEngineering from "@/data/portfolio/capabilities/01-ai-product-engineering.json";
-import capabilityTechnicalLeadership from "@/data/portfolio/capabilities/02-technical-leadership.json";
-import capabilityCloudArchitecture from "@/data/portfolio/capabilities/03-cloud-architecture.json";
-import capabilityEndToEndPlatforms from "@/data/portfolio/capabilities/04-end-to-end-platforms.json";
-import contactEmail from "@/data/portfolio/contact/01-email.json";
-import contactTelegram from "@/data/portfolio/contact/02-telegram.json";
-import contactWhatsapp from "@/data/portfolio/contact/03-whatsapp.json";
-import contactLinkedin from "@/data/portfolio/contact/04-linkedin.json";
-import contactCountry from "@/data/portfolio/contact/05-country.json";
 import educationJson from "@/data/portfolio/education.json";
 import profileJson from "@/data/portfolio/profile.json";
-import projectGlobant from "@/data/portfolio/projects/01-globant-enterprise-ai.json";
-import projectFoodDelivery from "@/data/portfolio/projects/02-food-delivery-super-app.json";
-import projectRappi from "@/data/portfolio/projects/03-rappi-consumer-platform.json";
-import projectWizeline from "@/data/portfolio/projects/04-wizeline-enterprise-saas.json";
-import projectSofttek from "@/data/portfolio/projects/05-softtek-enterprise-solutions.json";
-import skillAiLlm from "@/data/portfolio/skills/01-ai-llm.json";
-import skillFrontend from "@/data/portfolio/skills/02-frontend.json";
-import skillBackend from "@/data/portfolio/skills/03-backend.json";
-import skillMobile from "@/data/portfolio/skills/04-mobile.json";
-import skillCloudDevops from "@/data/portfolio/skills/05-cloud-devops.json";
-import socialLinkedin from "@/data/portfolio/social/01-linkedin.json";
-import socialGithub from "@/data/portfolio/social/02-github.json";
-import socialProjects from "@/data/portfolio/social/03-projects.json";
-import statYearsExperience from "@/data/portfolio/stats/01-years-experience.json";
-import statProjects from "@/data/portfolio/stats/02-projects.json";
-import statAiSpecialist from "@/data/portfolio/stats/03-ai-specialist.json";
-import statFullStack from "@/data/portfolio/stats/04-full-stack.json";
-import timelineSeniorAi from "@/data/portfolio/timeline/01-senior-ai-full-stack-engineer.json";
-import timelineSeniorFullStack from "@/data/portfolio/timeline/02-senior-full-stack-developer.json";
-import timelineFullStackMobile from "@/data/portfolio/timeline/03-full-stack-mobile-developer.json";
-import timelineJuniorWeb from "@/data/portfolio/timeline/04-junior-web-developer.json";
 import type {
   Capability,
   ContactMethod,
@@ -75,6 +45,17 @@ type RawSocialLink = RawIconItem & {
   label: string;
   href?: string;
   hrefFromProfile?: ProfileField;
+};
+
+type JsonModule<T extends object> = T | { default: T };
+
+type WebpackJsonContext<T extends object> = {
+  keys(): string[];
+  (id: string): JsonModule<T>;
+};
+
+type WebpackRequire = typeof require & {
+  context<T extends object>(directory: string, useSubdirectories: boolean, regExp: RegExp): WebpackJsonContext<T>;
 };
 
 const iconMap = {
@@ -139,40 +120,45 @@ function hydrateSocialLink(item: RawSocialLink): SocialLink {
   };
 }
 
+function loadJsonContext<T extends object>(jsonContext: WebpackJsonContext<T>) {
+  return jsonContext
+    .keys()
+    .sort((first, second) => first.localeCompare(second))
+    .map((key) => {
+      const jsonModule = jsonContext(key);
+
+      return "default" in jsonModule ? jsonModule.default : jsonModule;
+    });
+}
+
 export const profile: Profile = profileJson;
 
-export const stats: Stat[] = [statYearsExperience, statProjects, statAiSpecialist, statFullStack];
-
-export const capabilities: Capability[] = [
-  capabilityAiProductEngineering,
-  capabilityTechnicalLeadership,
-  capabilityCloudArchitecture,
-  capabilityEndToEndPlatforms,
-].map((item) => hydrateIcon(item as RawIconItem & Omit<Capability, "icon">));
-
-export const skillCategories: SkillCategory[] = [skillAiLlm, skillFrontend, skillBackend, skillMobile, skillCloudDevops].map(
-  (item) => hydrateIcon(item as RawIconItem & Omit<SkillCategory, "icon">),
+export const stats: Stat[] = loadJsonContext<Stat>(
+  (require as WebpackRequire).context<Stat>("../data/portfolio/stats", false, /\.json$/),
 );
 
-export const timeline: TimelineItem[] = [
-  timelineSeniorAi,
-  timelineSeniorFullStack,
-  timelineFullStackMobile,
-  timelineJuniorWeb,
-] as TimelineItem[];
+export const capabilities: Capability[] = loadJsonContext<RawIconItem & Omit<Capability, "icon">>(
+  (require as WebpackRequire).context<RawIconItem & Omit<Capability, "icon">>("../data/portfolio/capabilities", false, /\.json$/),
+).map((item) => hydrateIcon(item));
 
-export const projects: Project[] = [projectGlobant, projectFoodDelivery, projectRappi, projectWizeline, projectSofttek] as Project[];
+export const skillCategories: SkillCategory[] = loadJsonContext<RawIconItem & Omit<SkillCategory, "icon">>(
+  (require as WebpackRequire).context<RawIconItem & Omit<SkillCategory, "icon">>("../data/portfolio/skills", false, /\.json$/),
+).map((item) => hydrateIcon(item));
 
-export const contactMethods: ContactMethod[] = [
-  contactEmail,
-  contactTelegram,
-  contactWhatsapp,
-  contactLinkedin,
-  contactCountry,
-].map((item) => hydrateContactMethod(item as RawContactMethod));
-
-export const socialLinks: SocialLink[] = [socialLinkedin, socialGithub, socialProjects].map((item) =>
-  hydrateSocialLink(item as RawSocialLink),
+export const timeline: TimelineItem[] = loadJsonContext<TimelineItem>(
+  (require as WebpackRequire).context<TimelineItem>("../data/portfolio/timeline", false, /\.json$/),
 );
+
+export const projects: Project[] = loadJsonContext<Project>(
+  (require as WebpackRequire).context<Project>("../data/portfolio/projects", false, /\.json$/),
+);
+
+export const contactMethods: ContactMethod[] = loadJsonContext<RawContactMethod>(
+  (require as WebpackRequire).context<RawContactMethod>("../data/portfolio/contact", false, /\.json$/),
+).map((item) => hydrateContactMethod(item));
+
+export const socialLinks: SocialLink[] = loadJsonContext<RawSocialLink>(
+  (require as WebpackRequire).context<RawSocialLink>("../data/portfolio/social", false, /\.json$/),
+).map((item) => hydrateSocialLink(item));
 
 export const education: Education = hydrateIcon(educationJson as RawIconItem & Omit<Education, "icon">);

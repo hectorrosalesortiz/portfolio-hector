@@ -1,0 +1,46 @@
+{
+  "title": "Expense Management App",
+  "role": "React Native Engineer",
+  "company": "Expensify",
+  "location": "USA",
+  "period": "September 2021 - December 2022",
+  "companyUrl": "https://new.expensify.com/",
+  "description": "Large open-source React Native expense management platform where I contributed bug fixes and improvements across UI, functionality, Markdown rendering, and mobile app workflows.",
+  "stack": [
+    "React Native",
+    "TypeScript",
+    "JavaScript",
+    "iOS",
+    "Android",
+    "REST APIs",
+    "API Integration",
+    "Real-time Sync",
+    "Payment Integration",
+    "Performance Optimization"
+  ],
+  "impact": "Contributed targeted bug fixes and product improvements to a large GitHub open-source project powering cross-platform expense management, chat, payments, and accounting workflows.",
+  "links": [
+    { "label": "Web", "href": "https://new.expensify.com/", "type": "web" },
+    { "label": "iOS", "href": "https://apps.apple.com/us/app/expensify-travel-expense/id471713959", "type": "ios" },
+    { "label": "Android", "href": "https://play.google.com/store/apps/details?id=org.expensify.android", "type": "android" }
+  ],
+  "githubUrl": "https://github.com/Expensify/App",
+  "featured": true,
+  "imageUrls": [
+    "/assets/projects/expensify-login.png",
+    "/assets/projects/expensify-mobile.png",
+    "/assets/projects/expensify-workspace.png"
+  ],
+  "responsibilities": [
+    "Contributed bug fixes across the open-source Expensify React Native application.",
+    "Fixed UI issues across mobile and responsive app surfaces.",
+    "Improved application functionality in expense management and collaboration workflows.",
+    "Resolved Markdown rendering and content formatting issues.",
+    "Worked across TypeScript, JavaScript, React Native, iOS, Android, and shared app logic."
+  ],
+  "achievements": [
+    "Contributed to one of the largest open-source React Native financial productivity applications on GitHub.",
+    "Improved quality and user experience through focused fixes across UI, functionality, and Markdown behavior.",
+    "Supported a cross-platform codebase serving web, iOS, Android, and desktop app experiences."
+  ]
+}

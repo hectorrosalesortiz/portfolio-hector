@@ -80,8 +80,25 @@ export function FloatingActionButton() {
 
   useEffect(() => {
     localStorage.setItem(MESSAGES_KEY, JSON.stringify(messages.slice(-20)));
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    const scrollToBottom = () => {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    };
+
+    const animationFrame = requestAnimationFrame(scrollToBottom);
+    const timeout = window.setTimeout(scrollToBottom, 180);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.clearTimeout(timeout);
+    };
+  }, [open, messages, loading]);
 
   useEffect(() => {
     if (sessionId) {
