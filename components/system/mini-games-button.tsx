@@ -1,9 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Bomb, Crown, Gamepad2, Grid3X3, X } from "lucide-react";
+import { Bomb, Crown, Gamepad2, Grid3X3, Hash, X } from "lucide-react";
 import { useState } from "react";
 import { ChessGame } from "@/components/system/mini-games/chess-game";
+import { Game2048 } from "@/components/system/mini-games/game-2048";
 import { MinesweeperGame } from "@/components/system/mini-games/minesweeper-game";
 import { SudokuGame } from "@/components/system/mini-games/sudoku-game";
 import { cn } from "@/lib/utils";
@@ -12,6 +13,7 @@ const miniGames = [
   { id: "chess", label: "Chess", icon: Crown },
   { id: "sudoku", label: "Sudoku", icon: Grid3X3 },
   { id: "minesweeper", label: "Minesweeper", icon: Bomb },
+  { id: "2048", label: "2048", icon: Hash },
 ] as const;
 
 export function MiniGamesButton() {
@@ -84,6 +86,9 @@ export function MiniGamesButton() {
               </div>
               <div className={activeGame === "minesweeper" ? "contents" : "hidden"}>
                 <MinesweeperGame />
+              </div>
+              <div className={activeGame === "2048" ? "contents" : "hidden"}>
+                <Game2048 active={open && activeGame === "2048"} />
               </div>
             </motion.div>
           </motion.div>
