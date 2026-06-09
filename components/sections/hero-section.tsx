@@ -58,7 +58,11 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.48, duration: 0.75 }}
           >
-            <MagneticButton href="/resume" download className="w-full whitespace-nowrap px-5 text-sm sm:w-auto">
+            <MagneticButton
+              href="/assets/resume/hector-rosales-ortiz-resume.pdf"
+              download
+              className="w-full whitespace-nowrap px-5 text-sm sm:w-auto"
+            >
               <Download className="h-4 w-4" />
               Download Resume
             </MagneticButton>
